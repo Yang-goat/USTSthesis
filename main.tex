@@ -1,0 +1,40 @@
+\documentclass{USTSthesis}
+
+% 导入参考文献文件
+\addbibresource{reference.bib}
+\begin{document}
+
+% 封面插入
+% \includepdf{cover.pdf}
+
+% ----------------------- 摘要 -----------------------
+\frontmatter
+\include{front/abstract_zh}
+\include{front/abstract_en}
+
+% ----------------------- 目录 -----------------------
+\tableofcontents
+\mainmatter
+
+% ----------------------- 正文章节 -----------------------
+\include{chapters/introduction}
+\include{chapters/ch1}
+\include{chapters/ch2}
+\include{chapters/ch3}
+\include{chapters/ch4}
+\include{chapters/ch5}
+\include{chapters/conclusion}
+
+% ----------------------- 致谢 -----------------------
+\backmatter
+\include{front/acknowledgement}
+
+% ----------------------- 参考文献 -----------------------
+\printbibliography[heading=bibintoc,title={参考文献}]
+
+% ----------------------- 附录 -----------------------
+\appendix
+\include{chapters/appendixA}
+\include{chapters/appendixB}
+
+\end{document}

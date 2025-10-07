@@ -1,0 +1,18 @@
+\chapter{进阶示例：算法与伪代码}
+\section{算法描述（示例）}
+% 使用 algorithm2e 编写伪代码；中文标题与关键词在类文件中已配置。
+\begin{algorithm}[H]
+\caption{示例算法：参数优化框架}
+\KwIn{初始解集合 $\{x_i\}$，最大迭代次数 $T$}
+\KwOut{最优解 $x^*$}
+初始化候选解与适应度；\\
+\For{$t = 1$ \KwTo $T$}{
+  生成新解并评估；\\
+  按准则保留更优解；\\
+}
+\KwRet $x^*$。
+\end{algorithm}
+
+\section{结果展示（占位）}
+示例：在此处展示算法结果或可视化图形，与图~\ref{fig:single}、表~\ref{tab:basic} 交叉引用。
+
