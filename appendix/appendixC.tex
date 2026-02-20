@@ -1,0 +1,26 @@
+% 附录C：外文原文（不单独起空页，标题叠加在PDF第一页）
+
+% 第1页：插入PDF第一页，叠加“附录C：外文原文”标题，保留页眉页脚，并写入目录
+\includepdf[
+  pages=1,
+  pagecommand={%
+    \thispagestyle{fancy}%
+    \begin{center}
+      \vspace*{0cm}
+      {\zihao{-2}\heiti 附录C：外文原文}
+    \end{center}
+  },
+  addtotoc={1,chapter,1,附录C：外文原文,appendixC},
+  width=\textwidth,
+  height=0.92\textheight,
+  keepaspectratio
+]{appendix/LaTex基础.pdf}   % 此处修改为外文文献dpf
+
+% 第2页及之后：仅保留页眉页脚
+\includepdf[
+  pages=2-,
+  pagecommand={\thispagestyle{fancy}},
+  width=\textwidth,
+  height=0.92\textheight,
+  keepaspectratio
+]{appendix/LaTex基础.pdf}   % 此处修改为外文文献dpf

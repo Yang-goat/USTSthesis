@@ -11,6 +11,7 @@
 \usepackage{fontspec}
 \usepackage{setspace}
 \usepackage{xeCJK}
+\usepackage{indentfirst}          % 章节后第一段缩进
 \setCJKmainfont{SimSun}           % 宋体
 \setCJKsansfont{SimHei}           % 黑体
 \setCJKmonofont{FangSong}         % 仿宋
@@ -45,7 +46,7 @@
 \usepackage{amsmath, amssymb, amsthm, bm, mathtools}
 \usepackage{siunitx}
 \sisetup{round-mode=places, round-precision=2}
-\usepackage{graphicx, subcaption, float, booktabs, multirow, array, longtable, tabularx}
+\usepackage{graphicx, subcaption, float, booktabs, multirow, array, longtable, tabularx, multicol, makecell}
 \usepackage{caption}
 \captionsetup{font={small}, labelfont=bf, labelsep=quad, skip=6pt}
 \renewcommand{\figurename}{图}
@@ -154,6 +155,46 @@
 \newcommand{\enkeywords}[1]{%
   \vspace{1em}\par
   \textbf{Keywords:} #1
+}
+
+% ================== 外文文献翻译格式 ==================
+\usepackage{pdfpages}
+
+\newcommand{\translationtitle}[1]{%
+  \begin{center}
+    \zihao{3}\heiti #1
+  \end{center}
+  \vspace{0.5em}
+}
+
+\newenvironment{translationabstract}{%
+  \begin{center}
+    \zihao{3}\heiti 摘\quad 要
+  \end{center}
+  \vspace{1em}
+  \zihao{-4}\songti
+  \setstretch{1.5}
+}{\par\vspace{1em}}
+
+\newcommand{\translationkeywords}[1]{%
+  \vspace{1em}\par
+  {\heiti 关键词：} #1
+}
+
+\newcounter{translationsection}
+\newcounter{translationsubsection}[translationsection]
+\renewcommand{\thetranslationsubsection}{\arabic{translationsection}.\arabic{translationsubsection}}
+
+\newcommand{\translationsection}[1]{%
+  \refstepcounter{translationsection}%
+  \section*{\arabic{translationsection}.\ #1}%
+  \addcontentsline{toc}{section}{\arabic{translationsection}.\ #1}%
+}
+
+\newcommand{\translationsubsection}[1]{%
+  \refstepcounter{translationsubsection}%
+  \subsection*{\thetranslationsubsection\ #1}%
+  \addcontentsline{toc}{subsection}{\thetranslationsubsection\ #1}%
 }
 
 % ================== 致谢环境 ==================

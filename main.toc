@@ -23,6 +23,7 @@
 \contentsline {chapter}{致谢}{14}{chapter*.9}%
 \contentsline {chapter}{参考文献}{15}{chapter*.10}%
 \contentsline {chapter}{附录A：主要程序代码（示例）}{16}{appendix*.11}%
-\contentsline {chapter}{附录B：外文文献及译文（示例）}{17}{appendix*.12}%
-\contentsline {section}{外文原文}{17}{appendix*.12}%
-\contentsline {section}{外文译文}{17}{appendix*.12}%
+\contentsline {chapter}{附录B：外文文献译文}{17}{appendix*.12}%
+\contentsline {section}{1.\ 第一节}{18}{translationsection.1}%
+\contentsline {section}{2.\ 第二节}{18}{translationsection.2}%
+\contentsline {chapter}{\ignorespaces 附录C：外文原文}{19}{appendix*.13}%
