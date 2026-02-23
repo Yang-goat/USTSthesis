@@ -1,4 +1,4 @@
-name: 自动创建 Release（基于 Pull Request 或 Push 信息）
+name: 自动创建 Release
 
 # 该 GitHub Actions 工作流在合并 Pull Request 时自动创建一个新版本的 Release。
 # Release 的版本号与说明从合并的 Pull Request 描述中解析：
@@ -13,8 +13,6 @@ on:
   pull_request:
     types:
       - closed
-    branches:
-      - main
   # 当有新提交 push 到仓库时也触发，支持单人开发直接提交
   push:
     branches:
@@ -32,6 +30,10 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     steps:
+      # 检出仓库代码，让 gh release 有 .git 环境
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       # 解析版本号和描述信息。根据不同事件来源（PR 或 push）获取文本。
       - name: 解析版本号和描述
         id: parse
