@@ -1,0 +1,11 @@
+# Release 归档排除规则
+# 使用 export-ignore 标记的文件/目录不会出现在 GitHub Release 自动生成的源码包中
+
+
+# 排除 GitHub 工作流和 CI 配置
+/.github export-ignore
+/.github/workflows export-ignore
+
+# 排除 Git 相关文件
+.gitignore export-ignore
+.gitattributes export-ignore
