@@ -1,0 +1,94 @@
+name: 自动创建 Release（基于 Pull Request 或 Push 信息）
+
+# 该 GitHub Actions 工作流在合并 Pull Request 时自动创建一个新版本的 Release。
+# Release 的版本号与说明从合并的 Pull Request 描述中解析：
+#  - Pull Request 描述的第一行作为版本号（既是标签名，也是 release 名称）。
+#  - 从第二行开始的内容作为 Release 描述信息。
+#
+# 请将本文件放在仓库的 `.github/workflows/` 目录下，例如命名为 `auto-release.yml`。
+# 确保仓库的 Action 权限中启用了 `contents: write`，否则无法创建 Release。
+
+on:
+  # 当 Pull Request 被关闭（即合并或取消）时触发，此处用于合并后的发布
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  # 当有新提交 push 到仓库时也触发，支持单人开发直接提交
+  push:
+    branches:
+      - main
+
+# 权限声明：设置内容权限为可写以便创建 Release
+permissions:
+  contents: write
+
+jobs:
+  create_release:
+    # 仅当满足以下任一条件时运行作业：
+    # - PR 已合并（事件类型为 pull_request 且 merged = true）
+    # - 事件类型为 push（单人开发直接推送）
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    steps:
+      # 解析版本号和描述信息。根据不同事件来源（PR 或 push）获取文本。
+      - name: 解析版本号和描述
+        id: parse
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          HEAD_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          # 根据事件类型选择要解析的文本
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            body="$PR_BODY"
+          else
+            body="$HEAD_MESSAGE"
+          fi
+
+          # 提取第一行非空行作为版本号（去掉可能的回车）
+          version=$(printf "%s\n" "$body" | sed -n '/./{s/\r//;p;q}')
+
+          # 提取从第二行开始的内容作为描述（包括多行）
+          description=$(printf "%s\n" "$body" | tail -n +2)
+
+          # 输出到 GITHUB_OUTPUT，供后续步骤引用
+          echo "version=$version" >> $GITHUB_OUTPUT
+          echo "description<<EOF" >> $GITHUB_OUTPUT
+          echo "$description" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # 使用 GitHub CLI 创建 Release
+      - name: 创建 GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
+          MERGE_COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+        run: |
+          # 从上一步读取版本号和描述
+          version="${{ steps.parse.outputs.version }}"
+          description="${{ steps.parse.outputs.description }}"
+
+          # 版本号不能为空
+          if [ -z "$version" ]; then
+            echo "错误：描述的第一行为空，无法作为版本号。" >&2
+            exit 1
+          fi
+
+          # 根据事件类型设置目标 SHA
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            if [ -n "$MERGE_COMMIT_SHA" ]; then
+              target_sha="$MERGE_COMMIT_SHA"
+            else
+              target_sha="$GITHUB_SHA"
+            fi
+          else
+            target_sha="$GITHUB_SHA"
+          fi
+
+          # 调用 gh CLI 创建 Release
+          gh release create "$version" \
+            --title "$version" \
+            --notes "$description" \
+            --target "$target_sha"

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.28)  23 FEB 2026 15:42
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.28)  23 FEB 2026 23:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -8,7 +8,7 @@ entering extended mode
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (./USTSthesis.cls
-Document Class: USTSthesis 2026/02/23 苏州科技大学本科生毕业设计模板 v1.0.0
+Document Class: USTSthesis 2026/02/23 苏州科技大学本科生毕业设计模板 v1.0.1
 (d:/Program Files/texlive/2025/texmf-dist/tex/latex/ctex/ctexbook.cls (d:/Program Files/texlive/2025/texmf-dist/tex/latex/ctex/config/ctexbackend.cfg
 File: ctexbackend.cfg 2022/07/14 v2.5.10 Backend configuration file (CTEX)
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
@@ -726,8 +726,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip96
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 239.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 239.
+Package hyperref Info: Option `colorlinks' set `true' on input line 236.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 236.
  (d:/Program Files/texlive/2025/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
  (d:/Program Files/texlive/2025/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
@@ -1450,22 +1450,24 @@ LaTeX Font Warning: Font shape `TU/SimSun(1)/m/it' undefined
 
 [6]
 
-[7] (d:/Program Files/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+[7]
+
+[8] (d:/Program Files/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 355.
 
 
-[8])
+[9])
 
-[9]
+[10]
 \openout2 = `chapters/ch2.aux'.
 
  (./chapters/ch2.tex
 第3章
 )
 
-[10
+[11
 
 
 
@@ -1477,7 +1479,7 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 第4章
 )
 
-[11
+[12
 
 
 
@@ -1489,7 +1491,7 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 第5章
 )
 
-[12
+[13
 
 
 
@@ -1501,7 +1503,7 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 第6章
 )
 
-[13
+[14
 
 
 
@@ -1517,7 +1519,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 )
 
-[14
+[15
 
 
 
@@ -1534,14 +1536,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 )
 
-[15
+[16
 
 
 
 
 ]
 
-[16
+[17
 
 
 
@@ -1558,7 +1560,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ))
 
-[17
+[18
 
 
 ]
@@ -1572,14 +1574,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-[18
+[19
 
 
 
 
 ])
 
-[19]
+[20]
 \openout2 = `appendix/appendixC.aux'.
 
  (./appendix/appendixC.tex
@@ -1691,7 +1693,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
 <use appendix/LaTex基础.pdf, page 1>
-[20
+[21
 
 
 
@@ -1711,84 +1713,84 @@ File: appendix/LaTex基础.pdf Graphic file (type pdf)
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
 <use appendix/LaTex基础.pdf, page 2>
-[21
-
-]
-File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 3>
-File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 3>
-
-
-File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 3>
 [22
 
 ]
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 4>
+<use appendix/LaTex基础.pdf, page 3>
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 4>
+<use appendix/LaTex基础.pdf, page 3>
 
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 4>
+<use appendix/LaTex基础.pdf, page 3>
 [23
 
 ]
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 5>
+<use appendix/LaTex基础.pdf, page 4>
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 5>
+<use appendix/LaTex基础.pdf, page 4>
 
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 5>
+<use appendix/LaTex基础.pdf, page 4>
 [24
 
 ]
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 6>
+<use appendix/LaTex基础.pdf, page 5>
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 6>
+<use appendix/LaTex基础.pdf, page 5>
 
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 6>
+<use appendix/LaTex基础.pdf, page 5>
 [25
 
 ]
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 7>
+<use appendix/LaTex基础.pdf, page 6>
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 7>
+<use appendix/LaTex基础.pdf, page 6>
 
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 7>
+<use appendix/LaTex基础.pdf, page 6>
 [26
 
 ]
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 8>
+<use appendix/LaTex基础.pdf, page 7>
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 8>
+<use appendix/LaTex基础.pdf, page 7>
 
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 8>
+<use appendix/LaTex基础.pdf, page 7>
 [27
 
 ]
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 9>
+<use appendix/LaTex基础.pdf, page 8>
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 9>
+<use appendix/LaTex基础.pdf, page 8>
 
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
-<use appendix/LaTex基础.pdf, page 9>
+<use appendix/LaTex基础.pdf, page 8>
 [28
+
+]
+File: appendix/LaTex基础.pdf Graphic file (type pdf)
+<use appendix/LaTex基础.pdf, page 9>
+File: appendix/LaTex基础.pdf Graphic file (type pdf)
+<use appendix/LaTex基础.pdf, page 9>
+
+
+File: appendix/LaTex基础.pdf Graphic file (type pdf)
+<use appendix/LaTex基础.pdf, page 9>
+[29
 
 ]
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
@@ -1799,7 +1801,7 @@ File: appendix/LaTex基础.pdf Graphic file (type pdf)
 
 File: appendix/LaTex基础.pdf Graphic file (type pdf)
 <use appendix/LaTex基础.pdf, page 10>
-[29
+[30
 
 ]) (./main.aux (./front/abstract_zh.aux) (./front/abstract_en.aux) (./chapters/introduction.aux) (./chapters/ch1.aux) (./chapters/ch2.aux) (./chapters/ch3.aux) (./chapters/ch4.aux) (./chapters/ch5.aux) (./chapters/conclusion.aux) (./front/acknowledgement.aux) (./appendix/appendixA.aux) (./appendix/appendixB.aux) (./appendix/appendixC.aux))
  ***********
@@ -1817,10 +1819,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  35486 strings out of 473832
  746388 string characters out of 5726731
- 1751767 words of memory out of 5000000
+ 1751764 words of memory out of 5000000
  57959 multiletter control sequences out of 15000+600000
  574396 words of font info for 156 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  107i,17n,125p,3257b,5180s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (33 pages).
+Output written on main.pdf (34 pages).

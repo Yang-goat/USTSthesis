@@ -3,7 +3,7 @@
 %  苏州科技大学本科毕业设计（论文）LaTeX 模板类
 % ----------------------------------------------------------
 
-\ProvidesClass{USTSthesis}[2026/02/23 苏州科技大学本科生毕业设计模板 v1.0.0]
+\ProvidesClass{USTSthesis}[2026/02/23 苏州科技大学本科生毕业设计模板 v1.0.1]
 
 % ================== 基类与中文支持 ==================
 \LoadClass[12pt,a4paper,oneside]{ctexbook}
@@ -34,14 +34,11 @@
   headheight=15pt, headsep=0.5cm, footskip=0.8cm        % 页眉页脚距离
 }
 
-% ================== 正文字体与行距 ==================
-\RequirePackage{setspace}
-\onehalfspacing
+% ================== 正文字体 ==================
 \renewcommand{\normalsize}{%
   \zihao{-4}\songti
   \selectfont
 }
-\normalsize
 
 % ================== 页眉页脚 ==================
 \RequirePackage{fancyhdr}
@@ -86,7 +83,7 @@
   \vspace{\baselineskip}
   %摘要正文：小4号宋体，1.5倍行距
   \zihao{-4}\songti
-  \setstretch{1.5}
+  \setstretch{1.5}\selectfont
 }{%
   \par % 环境结束不主动加空行；“正文后空2行”交给 \keywords 控制
 }
@@ -107,7 +104,7 @@
   \vspace{\baselineskip}
   %摘要正文：小4号，1.5倍行距
   \zihao{-4}\rmfamily
-  \setstretch{1.5}
+  \setstretch{1.5}\selectfont
 }{%
   \par
 }
@@ -376,7 +373,7 @@
   \addcontentsline{toc}{section}{#1}%
   % 后续正文：小四宋体 + 1.5 倍行距
   \zihao{-4}\songti
-  \setstretch{1.5}%
+  \setstretch{1.5}\selectfont%
 }
 % 译文摘要环境
 \newenvironment{translationabstract}{%
@@ -386,7 +383,7 @@
   \end{center}%
   \vspace{\baselineskip}%
   \zihao{-4}\songti
-  \setstretch{1.5}%
+  \setstretch{1.5}\selectfont%
 }{%
   \par
 }
@@ -408,7 +405,7 @@
   \par\vspace{0.5\baselineskip}%
   {\noindent\zihao{4}\heiti\bf \arabic{translationsection}.\ #1\par}%
   \vspace{0.5\baselineskip}%
-  \zihao{-4}\songti\setstretch{1.5}%
+  \zihao{-4}\songti\setstretch{1.5}\selectfont%
 }
 % 二级（相当于 subsection）
 \newcommand{\translationsubsection}[1]{%
@@ -416,7 +413,7 @@
   \par\vspace{0.5\baselineskip}%
   {\noindent\zihao{-4}\heiti\bf \thetranslationsubsection\ #1\par}%
   \vspace{0.5\baselineskip}%
-  \zihao{-4}\songti\setstretch{1.5}%
+  \zihao{-4}\songti\setstretch{1.5}\selectfont%
 }
 % 三级
 \newcommand{\translationsubsubsection}[1]{%
@@ -424,7 +421,7 @@
   \par\vspace{0.5\baselineskip}%
   {\noindent\zihao{-4}\heiti\bf \thetranslationsubsubsection\ #1\par}%
   \vspace{0.5\baselineskip}%
-  \zihao{-4}\songti\setstretch{1.5}%
+  \zihao{-4}\songti\setstretch{1.5}\selectfont%
 }
 
 % ================== 参考文献 ==================
