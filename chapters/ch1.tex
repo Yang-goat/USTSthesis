@@ -1,249 +1,380 @@
-\chapter{写作与排版示例}\label{chap:usage}
+\chapter{模板正文使用说明}\label{chap:usage}
 
-本章演示常见的写作元素用法，包括图片与子图、表格与列宽控制、交叉引用与参考文献，示例内容可直接复制修改。
+本章用于说明本模板在正文中的常见写作方式，目标是让你可以直接复制示例并替换内容完成论文撰写。建议先通读本章，再按自己的课题逐步替换章节内容。
 
-\section{插入图片与子图}
-% 使用 graphicx 宏包的 \includegraphics 插图。
-% 常用尺寸控制：
-% - width=0.6\textwidth  按页面正文宽度的 60% 缩放（最推荐）
-% - height=6cm           指定高度；可与 keepaspectratio 搭配避免变形
-% - scale=0.8            相对原始大小缩放
-% 位置控制参数（[H]/[htbp]）：H=强制此处；htbp=建议放置位置，按此顺序尝试。
+\section{正文结构与文件组织}
+
+推荐按以下顺序组织内容：
+\begin{enumerate}
+  \item 在 \verb|main.tex| 中维护论文整体顺序（摘要、目录、正文、结论、参考文献、附录）。
+  \item 在 \verb|chapters/| 下按章节拆分正文（如 \verb|ch1.tex|、\verb|ch2.tex|）。
+  \item 在 \verb|reference.bib| 中维护参考文献条目，在正文通过 \verb|\cite{key}| 引用。
+\end{enumerate}
+
+如果是首次使用，建议先保留模板已有结构，只替换文字和图表内容，不要一次性改动太多排版设置。
+
+\section{交叉引用与 \texttt{cleveref}（推荐）}
+
+本模板已加载 \verb|cleveref|，推荐优先使用 \verb|\cref| 与 \verb|\Cref| 做交叉引用。与 \verb|\ref| 相比，\verb|\cref| 会自动补齐“图、表、式、定理”等前缀，且支持范围引用。
+
+\begin{equation}\label{eq:usage-energy}
+  E = mc^2
+\end{equation}
+
+\begin{equation}\label{eq:usage-motion}
+  s = v_0 t + \frac{1}{2}at^2
+\end{equation}
+
+正文中可写为：见\cref{eq:usage-energy}；相关运动关系见\cref{eq:usage-motion}；连续编号可写为\crefrange{eq:usage-energy}{eq:usage-motion}。
+
+\section{图表写作规范}
+
+\subsection{插图}
+
 \begin{figure}[H]
   \centering
-  % 将 example-image-a 替换为你的图片文件名（支持 .pdf/.png/.jpg 等）
-  % 建议将图片放在 figures/ 目录，并使用相对路径：figures/xxx.png
-  \includegraphics[width=0.6\textwidth]{example-image-a} % width 可改为 0.7\textwidth 等
-  \caption{单幅图片示例（请替换为真实图题）}
-  \label{fig:single}
+  % 修改图尺寸：把 0.62 改成 0.5/0.7 等；也可改为 height=6cm
+  % 常用位置参数：[H] 强制当前位置；[htbp] 允许浮动优化排版
+  \includegraphics[width=0.62\textwidth]{example-image-a}
+  \caption{单图示例（替换为你的实验图）}
+  \label{fig:usage-single}
 \end{figure}
 
-% 子图示例：使用 subcaption 宏包提供的 subfigure 环境
-% 子图常用设置：
-% - 每个子图可单独设置宽度，例如 0.45\textwidth 两列并排
-% - 子图标签 \label 放在对应 \caption 之后便于交叉引用
 \begin{figure}[H]
   \centering
+  % 修改子图宽度：0.48\textwidth 适合双栏并排，改为 0.32 可放三图
   \begin{subfigure}{0.48\textwidth}
     \centering
+    % 子图内部再调大小：通常保持 width=\textwidth
     \includegraphics[width=\textwidth]{example-image-a}
-    \caption{子图 A}
-    \label{fig:sub-a}
+    \caption{子图A}
+    \label{fig:usage-sub-a}
   \end{subfigure}
-  \hfill
+  \hfill % 子图间距；也可改为 \hspace{1em}
   \begin{subfigure}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{example-image-b}
-    \caption{子图 B}
-    \label{fig:sub-b}
+    \caption{子图B}
+    \label{fig:usage-sub-b}
   \end{subfigure}
   \caption{并列子图示例}
-  \label{fig:subfig}
+  \label{fig:usage-sub}
 \end{figure}
 
-在文中引用图如图~\ref{fig:single} 与 \ref{fig:subfig} 所示；子图可引用为图~\ref{fig:sub-a}、图~\ref{fig:sub-b}。
+如\crefrange{fig:usage-single}{fig:usage-sub}所示，可分别引用单图、整组子图或单个子图（如\cref{fig:usage-sub-a}）。
 
-\section{表格与列宽控制}
-% 基础表格：使用 booktabs 提供的 \toprule/\midrule/\bottomrule，排版更美观。
+\subsection{表格}
+
 \begin{table}[H]
   \centering
-  \caption{基础表格示例}
-  \label{tab:basic}
-  \begin{tabular}{lll} % l/c/r 分别表示左/居中/右对齐
+  \caption{三线表示例}
+  \label{tab:usage-basic}
+  \begin{tabular}{lll}
     \toprule
-    列1 & 列2 & 列3 \\
+    指标 & 方法A & 方法B \\
     \midrule
-    A1 & B1 & C1 \\
-    A2 & B2 & C2 \\
+    准确率 & 91.2\% & 93.4\% \\
+    召回率 & 89.8\% & 92.1\% \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-% 固定列宽：使用 p{<宽度>} 指定列宽；需根据内容调整宽度值（如 3cm/6em/0.25\textwidth）。
-% 可结合 \arraystretch 调整行高：\renewcommand{\arraystretch}{1.2}
 \begin{table}[H]
   \centering
-  \caption{固定列宽（p{..}）示例}
-  \label{tab:fixed}
+  \caption{固定列宽与自动换行示例}
+  \label{tab:usage-fixed}
+  % 调整行高：1.2 可改为 1.1/1.3
   \renewcommand{\arraystretch}{1.2}
-  \begin{tabular}{p{3cm} p{5cm} p{4cm}}
+  % 调整列宽：p{3cm} / p{7cm} / p{3cm} 可按内容长度修改
+  \begin{tabular}{p{3cm}p{7cm}p{3cm}}
     \toprule
-    指标 & 描述 & 备注 \\
+    模块 & 说明 & 备注 \\
     \midrule
-    指标一 & 这一列限制为 5cm，文字会自动换行，避免超出页面。 & 可在此添加简短说明。 \\
-    指标二 & 根据内容调整列宽以获得更好排版效果。 & 建议避免过长的未换行英文串。 \\
+    数据预处理 & 对原始样本进行清洗、标准化和格式统一，避免异常值影响训练结果。 & 建议独立成节 \\
+    模型训练 & 使用训练集进行参数优化并记录收敛曲线。 & 给出超参数 \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-% 自适应列宽：使用 tabularx 让表格总宽度填满 \textwidth，并使用 X 列型自动分配宽度。
-% 注意：需要 \usepackage{tabularx}（模板已加载）。
-\begin{table}[H]
-  \centering
-  \caption{自适应列宽（tabularx）示例}
-  \label{tab:tabularx}
-  \begin{tabularx}{\textwidth}{lXX}
-    \toprule
-    项 & 说明（X 列自动拉伸） & 备注（X 列自动拉伸） \\
-    \midrule
-    A & 使用 X 列可避免手工调列宽 & 与 p{..} 方案互补，按需选择 \\
-    B & 可结合 \verb|\arraystretch| 调整行高 & 复杂表格可考虑 longtable \\
-    \bottomrule
-  \end{tabularx}
-\end{table}
+\subsection{长表与续表示例（longtable）}
 
-如表~\ref{tab:basic}–\ref{tab:tabularx} 所示，按需要选择基础、固定宽度或自适应宽度的表格方式。
+当表格跨页时，建议使用 \verb|longtable|。第一页显示完整标题，后续页面显示“续表”并重复表头。
 
-\subsection{长表格与续表格式}
-当表格内容较长跨页时，建议使用 longtable 环境实现“续表”。续表时按规范：表题省略、表头重复，并在右上方标注“续表××”。示例如表~\ref{tab:lt} 所示。
-
-% 注意：longtable 的表头/续表头分别由 \endfirsthead 与 \endhead 分隔
-\begin{longtable}{p{2.2cm} p{3.2cm} p{6.5cm}}
-  \caption{长表格与续表示例}\label{tab:lt}\\
+\begin{longtable}{p{2cm}p{3cm}p{7cm}}
+  \caption{长表续表示例}\label{tab:usage-long}\\
   \toprule
-  序号 & 指标 & 说明（可自动换行） \\
+  序号 & 指标 & 说明 \\
   \midrule
   \endfirsthead
-  % —— 续表页眉（不重复表题），右上角“续表××” ——
-  \multicolumn{3}{r}{续表~\ref{tab:lt}}\\
+  \multicolumn{3}{r}{续表~\ref{tab:usage-long}}\\
   \toprule
-  序号 & 指标 & 说明（可自动换行） \\
+  序号 & 指标 & 说明 \\
   \midrule
   \endhead
-  % —— 表尾（每页） —— 可按需加入“续下页”提示 ——
   \bottomrule
   \endfoot
-  % —— 最终表尾（仅最后一页） ——
   \bottomrule
   \endlastfoot
-  % ===== 表体示例若干行，保证跨页 =====
-  1  & 指标 A & 用于演示 longtable 的跨页续表用法。 \\
-  2  & 指标 B & 表头会在续表页重复；续表页不再出现表题，仅在右上角显示“续表××”。 \\
-  3  & 指标 C & 可以使用中文和英文混排，长文本会自动换行以适应列宽。 \\
-  4  & 指标 D & 本模板使用 booktabs 的横线命令，排版更为美观。 \\
-  5  & 指标 E & 若需要脚注或注释，可在表格外另行给出。 \\
-  6  & 指标 F & 示例行。 \\
-  7  & 指标 G & 示例行。 \\
-  8  & 指标 H & 示例行。 \\
-  9  & 指标 I & 示例行。 \\
-  10 & 指标 J & 示例行。 \\
-  11 & 指标 K & 示例行。 \\
-  12 & 指标 L & 示例行。 \\
-  13 & 指标 M & 示例行。 \\
-  14 & 指标 N & 示例行。 \\
-  15 & 指标 O & 示例行。 \\
-  16 & 指标 P & 示例行。 \\
-  17 & 指标 Q & 示例行。 \\
-  18 & 指标 R & 示例行。 \\
-  19 & 指标 S & 示例行。 \\
-  20 & 指标 T & 示例行。 \\
-  21 & 指标 U & 示例行。 \\
-  22 & 指标 V & 示例行。 \\
-  23 & 指标 W & 示例行。 \\
-  24 & 指标 X & 示例行。 \\
-  25 & 指标 Y & 示例行。 \\
-  26 & 指标 Z & 示例行。 \\
-  27 & 指标 AA & 示例行。 \\
-  28 & 指标 AB & 示例行。 \\
-  29 & 指标 AC & 示例行。 \\
-  30 & 指标 AD & 示例行。 \\
-  31 & 指标 AE & 示例行。 \\
-  32 & 指标 AF & 示例行。 \\
-  33 & 指标 AG & 示例行。 \\
-  34 & 指标 AH & 示例行。 \\
-  35 & 指标 AI & 示例行。 \\
-  36 & 指标 AJ & 示例行。 \\
-  37 & 指标 AK & 示例行。 \\
-  38 & 指标 AL & 示例行。 \\
-  39 & 指标 AM & 示例行。 \\
-  40 & 指标 AN & 示例行。 \\
-  41 & 指标 AO & 示例行。 \\
-  42 & 指标 AP & 示例行。 \\
-  43 & 指标 AQ & 示例行。 \\
-  44 & 指标 AR & 示例行。 \\
-  45 & 指标 AS & 示例行。 \\
-  46 & 指标 AT & 示例行。 \\
-  47 & 指标 AU & 示例行。 \\
-  48 & 指标 AV & 示例行。 \\
-  49 & 指标 AW & 示例行。 \\
-  50 & 指标 AX & 示例行（跨页应出现“续表~\ref{tab:lt}”且表头重复）。 \\
+  1 & 指标A & 这是长表正文示例，可按需要替换为真实内容。\\
+  2 & 指标B & 该列使用固定宽度 p{7cm}，文字会自动换行。\\
+  3 & 指标C & 长表可跨页，续页自动重复表头。\\
+  4 & 指标D & 可用于参数表、符号表、实验对比明细表。\\
+  5 & 指标E & 若内容很多，建议拆分为多张长表并分别引用。\\
+  6 & 指标F & 示例数据。\\
+  7 & 指标G & 示例数据。\\
+  8 & 指标H & 示例数据。\\
+  9 & 指标I & 示例数据。\\
+  10 & 指标J & 示例数据。\\
+  11 & 指标K & 示例数据。\\
+  12 & 指标L & 示例数据。\\
+  13 & 指标M & 示例数据。\\
+  14 & 指标N & 示例数据。\\
+  15 & 指标O & 示例数据。\\
+  16 & 指标P & 示例数据。\\
+  17 & 指标Q & 示例数据。\\
+  18 & 指标R & 示例数据。\\
+  19 & 指标S & 示例数据。\\
+  20 & 指标T & 示例数据。\\
+  21 & 指标U & 示例数据。\\
+  22 & 指标V & 示例数据。\\
+  23 & 指标W & 示例数据。\\
+  24 & 指标X & 示例数据。\\
+  25 & 指标Y & 示例数据。\\
+  26 & 指标Z & 示例数据。\\
+  27 & 指标AA & 示例数据。\\
+  28 & 指标AB & 示例数据。\\
+  29 & 指标AC & 示例数据。\\
+  30 & 指标AD & 示例数据。\\
 \end{longtable}
 
-\section{公式与参考文献}
+\subsection{长表分组小计与总计示例}
 
-\subsection{对齐与多行公式（align/split）}
-常见等式组或推导可用 \verb|align| 对齐等号：
+当结果需要按组展示并给出小计、总计时，可在 \verb|longtable| 内插入分组行。下面示例可直接改为你的统计表：
+
+\begin{longtable}{p{2cm}p{4cm}p{2cm}p{2cm}p{2cm}}
+  \caption{长表分组统计（含小计与总计）}\label{tab:usage-long-sum}\\
+  \toprule
+  组别 & 项目 & 数量 & 均值 & 备注 \\
+  \midrule
+  \endfirsthead
+  \multicolumn{5}{r}{续表~\ref{tab:usage-long-sum}}\\
+  \toprule
+  组别 & 项目 & 数量 & 均值 & 备注 \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \endlastfoot
+  \multicolumn{5}{l}{\textbf{A组}}\\
+  A & 指标A1 & 12 & 91.2 & 示例数据\\
+  A & 指标A2 & 15 & 90.4 & 示例数据\\
+  A & 指标A3 & 11 & 92.1 & 示例数据\\
+  \midrule
+  \multicolumn{2}{r}{\textbf{A组小计}} & \textbf{38} & \textbf{91.2} & \\
+  \midrule
+  \multicolumn{5}{l}{\textbf{B组}}\\
+  B & 指标B1 & 10 & 88.3 & 示例数据\\
+  B & 指标B2 & 14 & 89.1 & 示例数据\\
+  B & 指标B3 & 16 & 90.0 & 示例数据\\
+  \midrule
+  \multicolumn{2}{r}{\textbf{B组小计}} & \textbf{40} & \textbf{89.2} & \\
+  \midrule
+  \multicolumn{2}{r}{\textbf{总计}} & \textbf{78} & \textbf{90.2} & \textbf{可改为加权均值}\\
+\end{longtable}
+
+正文中建议使用\crefrange{tab:usage-basic}{tab:usage-fixed}、\cref{tab:usage-long}与\cref{tab:usage-long-sum}进行说明，并在文字中解释“表格结论”，避免只贴表不分析。
+
+\section{列表环境：\texttt{enumerate}、\texttt{itemize}、\texttt{description}}
+
+\subsection{有序列表（步骤类）}
+\begin{enumerate}
+  \item 采集原始数据并完成清洗。
+  \item 划分训练集、验证集和测试集。
+  \item 训练模型并记录关键指标。
+\end{enumerate}
+
+\subsection{无序列表（要点类）}
+\begin{itemize}
+  \item 强调贡献点：突出你的方法与现有工作的差异。
+  \item 强调可复现性：给出关键参数、实验设置、评价指标。
+  \item 强调结论边界：说明方法在何种条件下有效。
+\end{itemize}
+
+\subsection{描述列表（术语解释类）}
+\begin{description}
+  \item[训练集] 用于模型参数学习的数据集合。
+  \item[验证集] 用于调参与模型选择，不参与最终测试统计。
+  \item[测试集] 用于报告最终泛化性能的数据集合。
+\end{description}
+
+\section{定理、定义与证明环境}
+
+本模板已预置 \verb|theorem|、\verb|definition|、\verb|lemma|、\verb|proposition|、\verb|corollary| 环境，可直接使用。
+
+\begin{definition}\label{def:metric-space}
+设非空集合 $X$ 上的函数 $d: X\times X\to \mathbb{R}$ 满足非负性、对称性和三角不等式，则称 $(X,d)$ 为度量空间。
+\end{definition}
+
+\begin{theorem}\label{thm:sample}
+在度量空间中，收敛序列的极限唯一。
+\end{theorem}
+
+\begin{proof}
+设序列 $\{x_n\}$ 同时收敛到 $x$ 与 $y$。由三角不等式有
+\[
+  d(x,y)\le d(x,x_n)+d(x_n,y).
+\]
+令 $n\to\infty$，右侧趋于 $0$，故 $d(x,y)=0$，即 $x=y$。
+\end{proof}
+
+在正文中可写：由\cref{def:metric-space}可得基本结构；关键结论见\cref{thm:sample}。
+
+\section{公式与算法环境}
+
+\subsection{公式排版建议}
+
 \begin{align}
-  f(x)
-    &= x^3 - 3x + 1 \\
-    &= (x-1)(x^2 + x - 1) \\
-    &= (x-1)\Bigl(x - \tfrac{-1+\sqrt{5}}{2}\Bigr)\Bigl(x - \tfrac{-1-\sqrt{5}}{2}\Bigr)\,.
+  f(x) &= x^2 + 2x + 1 \\
+       &= (x+1)^2
 \end{align}
-若只想对单个编号使用多行，可用 \verb|split|：
-\begin{equation}\label{eq:split-demo}
+
+多行推导建议使用 \verb|align| 或 \verb|aligned|；需要编号时使用带星号以外的环境（如 \verb|align| 而非 \verb|align*|）。
+
+\subsubsection*{1) 多行推导与单编号拆分}
+当一组推导需要对齐等号时，使用 \verb|align|；当你希望“多行但只有一个编号”时，使用 \verb|equation+split|：
+\begin{equation}\label{eq:usage-split}
   \begin{split}
-    y 
-      &= ax^2 + bx + c \\
-      &= a\Bigl(x + \tfrac{b}{2a}\Bigr)^2 - \tfrac{b^2}{4a} + c\,.
+    \int_0^1 (ax+b)^2\,dx
+      &= \int_0^1 (a^2x^2+2abx+b^2)\,dx \\
+      &= \frac{a^2}{3}+ab+b^2 .
   \end{split}
 \end{equation}
 
-\subsection{子编号（a,b,c）—— subequations}
-一组相关公式可共享同一主编号并附 a/b/c 子编号：
-\begin{equation}\label{eq:set}
-  S = \{\, x \in \mathbb{R} \mid x>0 \,\}
-\end{equation}
-\begin{subequations}\label{eq:abc}
+\subsubsection*{2) 子编号公式组（a,b,c）}
+相关公式可使用 \verb|subequations| 形成主编号下的子编号：
+\begin{subequations}\label{eq:usage-ode}
   \begin{align}
-    F_a(x) &= \int_0^x e^{-t}\,dt, \label{eq:abc-a}\\
-    F_b(x) &= \sum_{k=0}^{\infty} \frac{x^k}{k!}, \label{eq:abc-b}\\
-    F_c(x) &= \lim_{n\to\infty} \Bigl(1+\tfrac{x}{n}\Bigr)^n. \label{eq:abc-c}
+    y_1'(t) &= a_{11}y_1+a_{12}y_2, \label{eq:usage-ode-a}\\
+    y_2'(t) &= a_{21}y_1+a_{22}y_2, \label{eq:usage-ode-b}\\
+    \bm{y}'(t) &= A\bm{y}(t). \label{eq:usage-ode-c}
   \end{align}
 \end{subequations}
-其中式~\eqref{eq:abc-a}–\eqref{eq:abc-c} 采用 (\ref{eq:abc}) 的子编号。
+正文可写为：见\crefrange{eq:usage-ode-a}{eq:usage-ode-c}。
 
-\subsection{花括号与分段函数（cases/underbrace）}
-使用 \verb|cases| 可排版分段函数，并配合左大括号：
-\begin{equation}
-  f(x) = \begin{cases}
-    x^2, & x\ge 0,\\
-    -x,  & x<0.
+\subsubsection*{3) 分段函数、极限与定积分}
+\begin{equation}\label{eq:usage-cases}
+  g(x)=
+  \begin{cases}
+    x^2\sin\frac{1}{x}, & x\neq 0,\\
+    0, & x=0.
   \end{cases}
 \end{equation}
-也可用下花括号标注分组：
-\begin{equation}
-  \underbrace{a + a + \cdots + a}_{n\text{ 项}} = na\,.
+\begin{equation}\label{eq:usage-limit}
+  \lim_{n\to\infty}\left(1+\frac{x}{n}\right)^n = e^x,\qquad
+  \int_{-\infty}^{+\infty} e^{-x^2}\,dx=\sqrt{\pi}.
 \end{equation}
 
-\subsection{矩阵与向量}
-常用矩阵环境包括 \verb|pmatrix|、\verb|bmatrix| 与 \verb|vmatrix|：
-\begin{equation}
-  A = \begin{bmatrix}
-    1 & 0 & 2 \\
-    -1 & 3 & 1 \\
-    0 & 4 & -2
+\subsubsection*{4) 矩阵、行列式与分块矩阵}
+\begin{equation}\label{eq:usage-matrix}
+  A=
+  \begin{bmatrix}
+    1 & 2 & 0\\
+    0 & 3 & -1\\
+    2 & 1 & 4
   \end{bmatrix},\quad
-  \vec{v} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix},\quad
-  \det(A) = \begin{vmatrix}
-    1 & 0 & 2 \\
-    -1 & 3 & 1 \\
-    0 & 4 & -2
+  \det(A)=
+  \begin{vmatrix}
+    1 & 2 & 0\\
+    0 & 3 & -1\\
+    2 & 1 & 4
   \end{vmatrix}.
 \end{equation}
-
-\subsection{带左大括号的方程组}
-可用 \verb|aligned| 搭配可伸缩括号：
-\begin{equation}
-  \left\{ \begin{aligned}
-    x + y &= 1, \\
-    2x - y &= 0.
-  \end{aligned} \right.
+\begin{equation}\label{eq:usage-block}
+  M=
+  \begin{bmatrix}
+    B & C\\
+    D & E
+  \end{bmatrix},\qquad
+  B\in\mathbb{R}^{m\times m},\ C\in\mathbb{R}^{m\times n}.
 \end{equation}
-% 公式写作建议：使用 \label 为重要公式编号并可引用；复杂公式使用 align/align* 环境。
-\begin{equation}\label{eq:motion}
-  s = v_0 t + \tfrac{1}{2} a t^2
-\end{equation}
-式~\eqref{eq:motion} 给出匀加速直线运动的位移计算。
 
-% 参考文献：参考文献条目在 reference.bib 中；在文中使用 \cite{key} 引用。
-例如，参见文献~\cite{alorf_survey_2023} 获取更多综述性介绍。
+\subsubsection*{5) 方程组与大括号}
+\begin{equation}\label{eq:usage-system}
+  \left\{
+  \begin{aligned}
+    x+y+z &= 1,\\
+    2x-y+3z &= 0,\\
+    x-4y+z &= 2.
+  \end{aligned}
+  \right.
+\end{equation}
+
+\subsubsection*{6) 优化问题标准写法}
+\begin{equation}\label{eq:usage-opt-problem}
+  \begin{aligned}
+    \min_{x\in\mathbb{R}^n}\quad & f(x)=\frac{1}{2}x^\top Qx+c^\top x\\
+    \text{s.t.}\quad & Ax\le b,\quad Ex=d .
+  \end{aligned}
+\end{equation}
+若需给出一阶必要条件，可继续写为：
+\begin{equation}\label{eq:usage-kkt}
+  \nabla f(x^\star)+A^\top\lambda^\star+E^\top\nu^\star=0,\quad
+  \lambda^\star\ge 0,\quad
+  \lambda_i^\star (a_i^\top x^\star-b_i)=0.
+\end{equation}
+
+\subsubsection*{7) 常用数学符号排版建议}
+\begin{itemize}
+  \item 向量、矩阵建议统一风格：如 \verb|\bm{x}|、\verb|\bm{A}|。
+  \item 使用 \verb|\left...\right| 处理自适应括号，避免手动调大小。
+  \item 范数、绝对值可写作 \verb|\lVert x\rVert_2|、\verb||x||。
+  \item 重要公式务必加 \verb|\label|，正文用 \verb|\cref| 引用，如\cref{eq:usage-split,eq:usage-opt-problem,eq:usage-kkt}。
+\end{itemize}
+
+\subsection{算法示例}
+
+\begin{algorithm}[H]
+\caption{示例算法：迭代优化}
+\label{alg:usage-opt}
+\KwIn{初始解 $x_0$，最大迭代次数 $T$}
+\KwOut{近似最优解 $x^\star$}
+$x \leftarrow x_0$；\\
+\For{$t=1$ \KwTo $T$}{
+  计算目标函数与梯度；\\
+  按更新规则修正 $x$；\\
+}
+\KwRet{$x^\star$}
+\end{algorithm}
+
+算法引用可写为：核心流程见\cref{alg:usage-opt}。
+
+\section{代码与参考文献引用}
+
+\subsection{代码片段}
+\begin{lstlisting}[language=Python,caption={示例：训练循环伪代码},label={lst:usage-train}]
+for epoch in range(max_epoch):
+    train_loss = train_one_epoch(model, train_loader)
+    val_metric = evaluate(model, val_loader)
+    if val_metric > best_metric:
+        best_metric = val_metric
+        save_checkpoint(model)
+\end{lstlisting}
+
+\subsection{文献引用}
+正文中可直接使用 \verb|\cite{key}|。例如，相关综述可参考\cite{alorf_survey_2023}。编译顺序建议为：
+\begin{enumerate}
+  \item \verb|xelatex main|
+  \item \verb|biber main|
+  \item \verb|xelatex main|
+  \item \verb|xelatex main|
+\end{enumerate}
+
+\section{写作检查清单（提交前）}
+
+\begin{itemize}
+  \item 图、表、公式、算法是否都带有 \verb|\caption| 与 \verb|\label|。
+  \item 是否统一使用 \verb|\cref| 引用，避免“见下图/上表”这类模糊表述。
+  \item 每个图表后是否有分析文字，不只给出结果。
+  \item 参考文献是否完整、是否与正文引用一一对应。
+\end{itemize}

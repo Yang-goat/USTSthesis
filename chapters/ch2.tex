@@ -1,18 +1,22 @@
-\chapter{进阶示例：算法与伪代码}
-\section{算法描述（示例）}
-% 使用 algorithm2e 编写伪代码；中文标题与关键词在类文件中已配置。
-\begin{algorithm}[H]
-\caption{示例算法：参数优化框架}
-\KwIn{初始解集合 $\{x_i\}$，最大迭代次数 $T$}
-\KwOut{最优解 $x^*$}
-初始化候选解与适应度；\\
-\For{$t = 1$ \KwTo $T$}{
-  生成新解并评估；\\
-  按准则保留更优解；\\
-}
-\KwRet $x^*$。
-\end{algorithm}
+\chapter{进阶示例：算法与实现细节}
 
-\section{结果展示（占位）}
-示例：在此处展示算法结果或可视化图形，与图~\ref{fig:single}、表~\ref{tab:basic} 交叉引用。
+本章建议用于描述你的核心方法实现流程、关键参数与复杂度分析。若需快速上手，可先参考第~\ref{chap:usage}章中的图表、列表、定理与引用示例，再替换为自己的研究内容。
 
+\section{算法描述建议}
+
+描述算法时建议按以下结构组织：
+\begin{enumerate}
+  \item 给出问题输入、输出和符号定义。
+  \item 说明算法核心步骤与终止条件。
+  \item 报告时间复杂度、空间复杂度与实现要点。
+\end{enumerate}
+
+\section{实现细节建议}
+
+\begin{itemize}
+  \item 明确实验环境（操作系统、编译器或框架版本、硬件配置）。
+  \item 统一随机种子与数据划分策略，确保结果可复现。
+  \item 对关键超参数给出设定范围和最终取值依据。
+\end{itemize}
+
+如需展示伪代码，可直接复用\cref{alg:usage-opt}的写法并替换内容。

@@ -1,29 +1,37 @@
-\contentsline {chapter}{摘\hskip 1em\relax 要}{i}{chapter*.1}%
-\contentsline {chapter}{Abstract}{ii}{chapter*.2}%
-\contentsline {chapter}{\numberline {第一章\hspace {.3em}}绪论}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {第1章\hspace {.3em}}绪论}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}研究背景}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}研究目标与论文结构}{1}{section.1.2}%
-\contentsline {chapter}{\numberline {第二章\hspace {.3em}}写作与排版示例}{2}{chapter.2}%
-\contentsline {section}{\numberline {2.1}插入图片与子图}{2}{section.2.1}%
-\contentsline {section}{\numberline {2.2}表格与列宽控制}{3}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}长表格与续表格式}{3}{subsection.2.2.1}%
-\contentsline {section}{\numberline {2.3}公式与参考文献}{6}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}对齐与多行公式（align/split）}{6}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}子编号（a,b,c）—— subequations}{6}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}花括号与分段函数（cases/underbrace）}{7}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}矩阵与向量}{7}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}带左大括号的方程组}{7}{subsection.2.3.5}%
-\contentsline {chapter}{\numberline {第三章\hspace {.3em}}进阶示例：算法与伪代码}{9}{chapter.3}%
-\contentsline {section}{\numberline {3.1}算法描述（示例）}{9}{section.3.1}%
-\contentsline {section}{\numberline {3.2}结果展示（占位）}{9}{section.3.2}%
-\contentsline {chapter}{\numberline {第四章\hspace {.3em}}研究方法（占位）}{10}{chapter.4}%
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与结果（占位）}{11}{chapter.5}%
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}讨论与展望（占位）}{12}{chapter.6}%
-\contentsline {chapter}{\numberline {第七章\hspace {.3em}}结论}{13}{chapter.7}%
-\contentsline {chapter}{致谢}{14}{chapter*.9}%
-\contentsline {chapter}{参考文献}{15}{chapter*.10}%
-\contentsline {chapter}{附录A：主要程序代码（示例）}{16}{appendix*.11}%
-\contentsline {chapter}{附录B：外文文献译文}{17}{appendix*.12}%
-\contentsline {section}{1.\ 第一节}{18}{translationsection.1}%
-\contentsline {section}{2.\ 第二节}{18}{translationsection.2}%
-\contentsline {chapter}{\ignorespaces 附录C：外文原文}{19}{appendix*.13}%
+\contentsline {chapter}{\numberline {第2章\hspace {.3em}}模板正文使用说明}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}正文结构与文件组织}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}交叉引用与 \texttt {cleveref}（推荐）}{2}{section.2.2}%
+\contentsline {section}{\numberline {2.3}图表写作规范}{3}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}插图}{3}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}表格}{3}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}长表与续表示例（longtable）}{4}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}长表分组小计与总计示例}{5}{subsection.2.3.4}%
+\contentsline {section}{\numberline {2.4}列表环境：\texttt {enumerate}、\texttt {itemize}、\texttt {description}}{5}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}有序列表（步骤类）}{5}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}无序列表（要点类）}{6}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}描述列表（术语解释类）}{6}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}定理、定义与证明环境}{6}{section.2.5}%
+\contentsline {section}{\numberline {2.6}公式与算法环境}{6}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}公式排版建议}{6}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}算法示例}{8}{subsection.2.6.2}%
+\contentsline {section}{\numberline {2.7}代码与参考文献引用}{8}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}代码片段}{8}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}文献引用}{9}{subsection.2.7.2}%
+\contentsline {section}{\numberline {2.8}写作检查清单（提交前）}{9}{section.2.8}%
+\contentsline {chapter}{\numberline {第3章\hspace {.3em}}进阶示例：算法与实现细节}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}算法描述建议}{10}{section.3.1}%
+\contentsline {section}{\numberline {3.2}实现细节建议}{10}{section.3.2}%
+\contentsline {chapter}{\numberline {第4章\hspace {.3em}}研究方法（占位）}{11}{chapter.4}%
+\contentsline {chapter}{\numberline {第5章\hspace {.3em}}实验与结果（占位）}{12}{chapter.5}%
+\contentsline {chapter}{\numberline {第6章\hspace {.3em}}讨论与展望（占位）}{13}{chapter.6}%
+\contentsline {chapter}{结\hskip 1em\relax 论}{14}{chapter*.6}%
+\contentsline {chapter}{致\hskip 1em\relax 谢}{15}{chapter*.7}%
+\contentsline {chapter}{参\hspace {0.5em}考\hspace {0.5em}文\hspace {0.5em}献}{16}{chapter*.8}%
+\contentsline {chapter}{附录A\hskip 1em\relax 主要程序代码}{17}{appendix*.9}%
+\contentsline {chapter}{附录B\hskip 1em\relax 译文}{18}{appendix*.10}%
+\contentsline {section}{示例：某外文论文标题（译文）}{18}{appendix*.10}%
+\contentsline {chapter}{\ignorespaces {\zihao {5}\heiti \bfseries 附录C\hskip 1em\relax 外文原文}}{20}{appendix*.11}%
+\contentsfinish 
