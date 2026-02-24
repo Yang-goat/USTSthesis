@@ -1,7 +1,7 @@
 # USTSthesis
 苏州科技大学本科毕业设计（论文）LaTeX 模板
 
-![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)
 ![License: LPPL 1.3c](https://img.shields.io/badge/license-LPPL%201.3c-green.svg)
 ![Build: XeLaTeX + Biber](https://img.shields.io/badge/build-XeLaTeX%20%2B%20Biber-orange.svg)
 
@@ -10,8 +10,8 @@
 ---
 
 ## 版本信息
-- 当前版本：`1.0.1`
-- 更新日期：`2026-02-23`
+- 当前版本：`1.0.2`
+- 更新日期：`2026-02-24`
 - 格式参考：[苏州科技大学 毕业设计（论文）样式](https://bylw.usts.edu.cn/bysj/NewsDetail.aspx?ConfigurationID=8F0lgC4y7Ho%3d&HomePageManagementID=X0H9ludZcp8%3d)
 
 ---
@@ -81,6 +81,7 @@ latexmk -xelatex -bibtex main.tex
 | **0.0.3**	| 2026-02-20	| 新增外文文献翻译及原文部分格式。
 | **1.0.0** | 2026-02-23 | 正式版：统一正文使用说明，补齐 `cref`、列表、定理定义等环境示例并完善模板文档。 |
 | **1.0.1** | 2026-02-23 | 修复了正文1.5倍行距失效的bug。 |
+| **1.0.2** | 2026-02-24 | 优化了证明没有加粗的效果。 |
 
 ---
 

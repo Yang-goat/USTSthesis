@@ -3,7 +3,7 @@
 %  苏州科技大学本科毕业设计（论文）LaTeX 模板类
 % ----------------------------------------------------------
 
-\ProvidesClass{USTSthesis}[2026/02/23 苏州科技大学本科生毕业设计模板 v1.0.1]
+\ProvidesClass{USTSthesis}[2026/02/24 苏州科技大学本科生毕业设计模板 v1.0.2]
 
 % ================== 基类与中文支持 ==================
 \LoadClass[12pt,a4paper,oneside]{ctexbook}
@@ -356,6 +356,7 @@
 \newtheorem{lemma}{\heiti\bfseries 引理}[chapter]
 \newtheorem{proposition}{\heiti\bfseries 命题}[chapter]
 \newtheorem{corollary}{\heiti\bfseries 推论}[chapter]
+\newtheorem*{proofenv}{\heiti\bfseries 证明}
 \theoremstyle{definition}
 \newtheorem{definition}{\heiti\bfseries 定义}[chapter]
 
