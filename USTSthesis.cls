@@ -3,7 +3,7 @@
 %  苏州科技大学本科毕业设计（论文）LaTeX 模板类
 % ----------------------------------------------------------
 
-\ProvidesClass{USTSthesis}[2026/02/24 苏州科技大学本科生毕业设计模板 v1.0.2]
+\ProvidesClass{USTSthesis}[2026/02/26 苏州科技大学本科生毕业设计模板 v1.0.3]
 
 % ================== 基类与中文支持 ==================
 \LoadClass[12pt,a4paper,oneside]{ctexbook}
@@ -323,17 +323,19 @@
     \zihao{-4}\songti
     \setstretch{1.5}
 }
-\RequirePackage[ruled,vlined,linesnumbered]{algorithm2e}
+\RequirePackage[ruled,linesnumbered,noline]{algorithm2e}
 \SetKwInput{KwIn}{输入}
 \SetKwInput{KwOut}{输出}
 \SetKw{KwTo}{至}
 \SetKw{KwBy}{步长}
 \SetKw{KwRet}{返回}
-\SetAlCapNameFnt{\bf}
-\SetAlCapFnt{\bf}
+\SetAlCapNameFnt{\heiti\bfseries\zihao{5}}
+\SetAlCapFnt{\heiti\bfseries\zihao{5}}
 \SetAlgoCaptionSeparator{：}
 \renewcommand{\algorithmcfname}{算法}
 \renewcommand{\thealgocf}{\thechapter.\arabic{algocf}}
+\SetAlgoNlRelativeSize{-1}
+\SetAlFnt{\songti\zihao{5}}
 % 代码高亮
 \RequirePackage{listings,xcolor}
 \lstset{

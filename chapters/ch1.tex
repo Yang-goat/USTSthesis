@@ -13,7 +13,7 @@
 
 如果是首次使用，建议先保留模板已有结构，只替换文字和图表内容，不要一次性改动太多排版设置。
 
-\section{交叉引用与 \texttt{cleveref}（推荐）}
+\section{交叉引用与 \texttt{cleveref}（推荐）}\label{sec:usage-crossref}
 
 本模板已加载 \verb|cleveref|，推荐优先使用 \verb|\cref| 与 \verb|\Cref| 做交叉引用。与 \verb|\ref| 相比，\verb|\cref| 会自动补齐“图、表、式、定理”等前缀，且支持范围引用。
 
@@ -26,6 +26,13 @@
 \end{equation}
 
 正文中可写为：见\cref{eq:usage-energy}；相关运动关系见\cref{eq:usage-motion}；连续编号可写为\crefrange{eq:usage-energy}{eq:usage-motion}。
+
+章节与小节引用使用 \verb|\ref|。常见写法示例如下：
+\begin{itemize}
+  \item 单章引用：见第\ref{chap:usage}章。
+  \item 小节引用：交叉引用规则见第\ref{sec:usage-crossref}节。
+  \item 混合引用：写作检查项可结合第\ref{sec:usage-crossref}节与\cref{alg:usage-opt}说明。
+\end{itemize}
 
 \section{图表写作规范}
 
@@ -335,16 +342,19 @@
 \subsection{算法示例}
 
 \begin{algorithm}[H]
-\caption{示例算法：迭代优化}
+\caption{示例算法：梯度下降迭代求解}
 \label{alg:usage-opt}
-\KwIn{初始解 $x_0$，最大迭代次数 $T$}
+\KwIn{初始解 $x_0$，学习率 $\eta$，最大迭代次数 $T$，容差 $\varepsilon$}
 \KwOut{近似最优解 $x^\star$}
-$x \leftarrow x_0$；\\
+$x \leftarrow x_0$\\
 \For{$t=1$ \KwTo $T$}{
-  计算目标函数与梯度；\\
-  按更新规则修正 $x$；\\
+  计算梯度 $g_t=\nabla f(x)$\\
+  \If{$\lVert g_t \rVert_2 < \varepsilon$}{
+    \KwRet{$x$}
+  }
+  $x \leftarrow x - \eta g_t$\\
 }
-\KwRet{$x^\star$}
+\KwRet{$x^\star \leftarrow x$}
 \end{algorithm}
 
 算法引用可写为：核心流程见\cref{alg:usage-opt}。
