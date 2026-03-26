@@ -1,0 +1,48 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{USTS-page}[2026/03/26 Page styles]
+
+% ----------------------------------------------------------
+% 页眉页脚辅助命令。
+%
+% thesis / thesisappendix：
+% - 有页眉
+% - 页码居中放在页脚
+%
+% translation：
+% - 无页眉
+% - 页码居中放在页脚
+% ----------------------------------------------------------
+
+\RequirePackage{fancyhdr}
+
+\newcommand{\USTSHeaderText}{苏州科技大学本科生毕业论文}
+
+\newcommand{\USTSSetupPageThesis}{%
+  \fancyhf{}%
+  \fancypagestyle{plain}{%
+    \fancyhead[C]{\zihao{5}\songti \USTSHeaderText}%
+    \fancyfoot[C]{\zihao{-5}\rmfamily\thepage}%
+  }%
+  \fancypagestyle{fancy}{%
+    \fancyhead[C]{\zihao{5}\songti \USTSHeaderText}%
+    \fancyfoot[C]{\zihao{-5}\rmfamily\thepage}%
+  }%
+  \renewcommand{\headrulewidth}{0.5pt}%
+  \pagestyle{fancy}%
+}
+
+\newcommand{\USTSSetupPageTranslation}{%
+  \fancyhf{}%
+  \fancypagestyle{plain}{%
+    \fancyhead{}%
+    \fancyfoot[C]{\zihao{-5}\rmfamily\thepage}%
+  }%
+  \fancypagestyle{fancy}{%
+    \fancyhead{}%
+    \fancyfoot[C]{\zihao{-5}\rmfamily\thepage}%
+  }%
+  \renewcommand{\headrulewidth}{0pt}%
+  \pagestyle{fancy}%
+}
+
+\endinput

@@ -1,0 +1,120 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{USTS-base}[2026/03/26 Base settings]
+
+% ----------------------------------------------------------
+% 三种文档模式共用的基础设置。
+%
+% 后续人工校格式时，优先在这里调整：
+% - 字体
+% - 页边距
+% - 正文默认段落样式
+% - 摘要页前后间距
+% ----------------------------------------------------------
+
+\RequirePackage{iftex}
+\ifPDFTeX
+  \PackageError{USTS-base}{This class requires XeLaTeX or LuaLaTeX}{%
+    Please compile with XeLaTeX (recommended) or LuaLaTeX.}
+\fi
+
+\RequirePackage{fontspec}
+\RequirePackage{setspace}
+\RequirePackage{xeCJK}
+\RequirePackage{indentfirst}
+\RequirePackage{geometry}
+\RequirePackage{etoolbox}
+
+% 字体设置保持与原始 cls 一致。
+\setCJKmainfont{SimSun}
+\setCJKsansfont[AutoFakeBold=true]{SimHei}
+\setCJKmonofont{FangSong}
+\setmainfont{Times New Roman}
+
+% 共用段落默认值。
+\linespread{1.5}
+\setlength{\parindent}{2em}
+
+% 页边距直接沿用原始 cls。
+\geometry{
+  top=2.54cm,
+  bottom=2.54cm,
+  left=3.17cm,
+  right=3.17cm,
+  headheight=15pt,
+  headsep=0.5cm,
+  footskip=0.8cm
+}
+
+% 正文默认字体。
+\renewcommand{\normalsize}{%
+  \zihao{-4}\songti
+  \selectfont
+}
+
+% frontmatter 保持使用大写罗马页码。
+\makeatletter
+\renewcommand{\frontmatter}{%
+  \cleardoublepage
+  \@mainmatterfalse
+  \pagenumbering{Roman}
+}
+\makeatother
+
+% ------------------ 中文摘要 ------------------
+% 供 thesis 与 thesisappendix 使用。
+\newenvironment{zhabstract}[1]{%
+  \clearpage
+  \thispagestyle{fancy}
+  \par\noindent
+  \vspace*{20bp}
+  \begin{center}
+    \bfseries\heiti\zihao{-2} #1%
+  \end{center}
+  \vspace*{30bp}
+  \begin{center}
+    \bfseries\heiti\zihao{3} 摘\quad 要%
+  \end{center}
+  \vspace{\baselineskip}
+  \parindent=2\ccwd\relax
+  \zihao{-4}\songti
+  \setstretch{1.5}\selectfont
+  \leavevmode\hspace*{2\ccwd}\ignorespaces
+}{%
+  \par
+}
+
+% ------------------ 英文摘要 ------------------
+% 仅供 thesis 与 thesisappendix 使用。
+\newenvironment{enabstract}[1]{%
+  \clearpage
+  \thispagestyle{fancy}
+  \par\noindent
+  \vspace*{20bp}
+  \begin{center}
+    \bfseries\rmfamily\zihao{-2} #1%
+  \end{center}
+  \vspace*{30bp}
+  \begin{center}
+    \bfseries\rmfamily\zihao{3} Abstract%
+  \end{center}
+  \vspace{\baselineskip}
+  \parindent=2\ccwd\relax
+  \zihao{-4}\rmfamily
+  \setstretch{1.5}\selectfont
+  \leavevmode\hspace*{2\ccwd}\ignorespaces
+}{%
+  \par
+}
+
+% 关键词命令。
+\newcommand{\keywords}[1]{%
+  \par\vspace{2\baselineskip}%
+  {\bfseries\heiti\zihao{-4} 关键词\quad}{\zihao{-4}\songti #1}%
+}
+
+\newcommand{\enkeywords}[1]{%
+  \par\vspace{2\baselineskip}%
+  {\bfseries\zihao{-4} Keywords\quad}{\zihao{-4} #1}%
+}
+
+\endinput

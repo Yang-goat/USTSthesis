@@ -1,0 +1,33 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{USTS-floats}[2026/03/26 Math, tables, figures]
+
+% ----------------------------------------------------------
+% 数学、图、表相关设置，三种模式共用。
+% ----------------------------------------------------------
+
+\RequirePackage{amsmath,amssymb,amsthm,bm,mathtools,empheq}
+\RequirePackage{graphicx,subcaption,float,booktabs,multirow,array,longtable,tabularx,multicol,makecell}
+\RequirePackage{caption}
+\RequirePackage{etoolbox}
+
+\setlength{\heavyrulewidth}{0.10em}
+\setlength{\lightrulewidth}{0.06em}
+\setlength{\cmidrulewidth}{0.06em}
+
+\DeclareCaptionFont{wuhaoSong}{\zihao{5}\songti}
+\captionsetup{font={wuhaoSong}, labelfont={wuhaoSong}, labelsep=quad, skip=6pt}
+\captionsetup[subfigure]{font={wuhaoSong}, labelfont={wuhaoSong}}
+\captionsetup[subtable]{font={wuhaoSong}, labelfont={wuhaoSong}}
+
+\newcommand{\USTSTableFont}{\zihao{5}\songti}
+\AtBeginEnvironment{table}{\USTSTableFont}
+\AtBeginEnvironment{longtable}{\USTSTableFont}
+\AtBeginEnvironment{tabular}{\USTSTableFont}
+\AtBeginEnvironment{tabularx}{\USTSTableFont}
+
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+\endinput

@@ -1,0 +1,196 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{USTS-translation}[2026/03/26 Translation module]
+
+% ----------------------------------------------------------
+% 译文与原文附录相关逻辑：
+% - 独立外文翻译
+% - 作为正文附录插入的译文
+% - 作为正文附录插入的外文原文 PDF
+% ----------------------------------------------------------
+
+\RequirePackage{pdfpages}
+
+\newif\ifUSTSStandaloneTrans
+\newif\ifUSTSAppendixTrans
+\USTSStandaloneTransfalse
+\USTSAppendixTransfalse
+
+\newcommand{\USTSOriginAppendixTitle}{外文原文}
+\newcommand{\USTSOriginPDFPath}{appendix/外文原文.pdf}
+\newcounter{USTStranslationchapter}
+\newcounter{USTStranslationsection}[USTStranslationchapter]
+\newcounter{USTStranslationsubsection}[USTStranslationsection]
+
+\renewcommand{\theUSTStranslationchapter}{\arabic{USTStranslationchapter}}
+\renewcommand{\theUSTStranslationsection}{\theUSTStranslationchapter.\arabic{USTStranslationsection}}
+\renewcommand{\theUSTStranslationsubsection}{\theUSTStranslationsection.\arabic{USTStranslationsubsection}}
+
+\makeatletter
+\newcommand{\USTSStartAppendixMatter}{%
+  \cleardoublepage
+  \@mainmattertrue
+  \appendix
+}
+\makeatother
+
+\newcommand{\USTSAppendixHeadingText}[1]{%
+  \appendixname\ \thechapter\quad #1%
+}
+
+\newcommand{\USTSAppendixChapter}[1]{%
+  \refstepcounter{chapter}%
+  \chapter*{\USTSAppendixHeadingText{#1}}%
+  \addcontentsline{toc}{chapter}{\USTSAppendixHeadingText{#1}}%
+}
+
+% ------------------ 模式设置入口 ------------------
+\newcommand{\USTSSetupThesis}{%
+  \USTSSetupPageThesis
+  \USTSStandaloneTransfalse
+  \USTSAppendixTransfalse
+}
+
+\newcommand{\USTSSetupTranslation}{%
+  \USTSSetupPageTranslation
+  \USTSStandaloneTranstrue
+  \USTSAppendixTransfalse
+  \pagenumbering{arabic}%
+}
+
+\newcommand{\USTSSetupThesisAppendix}{%
+  \USTSSetupPageThesis
+  \USTSStandaloneTransfalse
+  \USTSAppendixTranstrue
+}
+
+% ------------------ 译文标题与摘要 ------------------
+\newcommand{\translationtitle}[1]{%
+  \par
+  \thispagestyle{fancy}%
+  % \vspace*{\baselineskip}%
+  \begin{center}
+    \ifUSTSStandaloneTrans
+      \vspace*{20bp}
+      {\zihao{-2}\heiti\bfseries #1}%
+      \vspace*{30bp}
+    \else
+      \vspace*{20bp}
+      {\zihao{-3}\heiti\bfseries #1}%
+    \fi
+  \end{center}%
+  \ifUSTSAppendixTrans
+    \addcontentsline{toc}{section}{#1}%
+  \fi
+  \zihao{-4}\songti
+  \setstretch{1.5}\selectfont%
+}
+
+\newenvironment{translationabstract}{%
+  \par
+  \begin{center}
+    \zihao{-3}\heiti\bfseries 摘\quad 要%
+  \end{center}%
+  \vspace{\baselineskip}%
+  \parindent=2\ccwd\relax
+  \zihao{-4}\songti
+  \setstretch{1.5}\selectfont%
+  \leavevmode\hspace*{2\ccwd}\ignorespaces
+}{%
+  \par
+}
+
+\newcommand{\translationkeywords}[1]{%
+  \par\vspace{2\baselineskip}%
+  {\zihao{-4}\heiti\bfseries 关键词\quad}{\zihao{-4}\songti #1}%
+  \par
+}
+
+\newcommand{\appendixtranslationtitle}[1]{%
+  \ifUSTSAppendixTrans
+    \setcounter{USTStranslationchapter}{0}%
+    \setcounter{USTStranslationsection}{0}%
+    \setcounter{USTStranslationsubsection}{0}%
+    \USTSAppendixChapter{外文翻译}%
+    \translationtitle{#1}%
+  \else
+    \translationtitle{#1}%
+  \fi
+}
+
+% ------------------ 译文正文层级 ------------------
+% 独立译文保留与 thesis 相同的章/节层级。
+% 附录译文使用独立的“第1章 / 1.1 / 1.1.1”计数体系，
+% 但不将这些子标题写入目录。
+\newcommand{\translationsection}[1]{%
+  \ifUSTSAppendixTrans
+    \refstepcounter{USTStranslationchapter}%
+    \setcounter{USTStranslationsection}{0}%
+    \setcounter{USTStranslationsubsection}{0}%
+    \chapter*{第\,\theUSTStranslationchapter\,章\hspace{1em}#1}%
+    \thispagestyle{fancy}%
+  \else
+    \chapter{#1}%
+  \fi
+}
+
+\newcommand{\translationsubsection}[1]{%
+  \ifUSTSAppendixTrans
+    \refstepcounter{USTStranslationsection}%
+    \setcounter{USTStranslationsubsection}{0}%
+    \section*{\theUSTStranslationsection\quad #1}%
+  \else
+    \section{#1}%
+  \fi
+}
+
+\newcommand{\translationsubsubsection}[1]{%
+  \ifUSTSAppendixTrans
+    \refstepcounter{USTStranslationsubsection}%
+    \subsection*{\theUSTStranslationsubsection\quad #1}%
+  \else
+    \subsection{#1}%
+  \fi
+}
+
+% ------------------ 外文原文附录 ------------------
+\newcommand{\setoriginappendixtitle}[1]{%
+  \renewcommand{\USTSOriginAppendixTitle}{#1}%
+}
+
+\newcommand{\setoriginpdfpath}[1]{%
+  \renewcommand{\USTSOriginPDFPath}{#1}%
+}
+
+\newcommand{\USTSOriginHeadingText}{%
+  \USTSAppendixHeadingText{\USTSOriginAppendixTitle}%
+}
+
+\newcommand{\USTSOriginFirstPageCommand}{%
+  \refstepcounter{chapter}%
+  \addcontentsline{toc}{chapter}{\USTSOriginHeadingText}%
+  \label{app:origin}%
+  \thispagestyle{fancy}%
+  \begin{center}
+    \vspace*{0cm}%
+    {\zihao{-3}\heiti\bfseries \USTSOriginHeadingText}%
+  \end{center}%
+}
+
+\newcommand{\USTSIncludeOriginAppendix}{%
+  \includepdf[
+    pages=1,
+    pagecommand={\USTSOriginFirstPageCommand},
+    width=\textwidth,
+    height=0.92\textheight,
+    keepaspectratio
+  ]{\USTSOriginPDFPath}%
+  \includepdf[
+    pages=2-,
+    pagecommand={\thispagestyle{fancy}},
+    width=\textwidth,
+    height=0.92\textheight,
+    keepaspectratio
+  ]{\USTSOriginPDFPath}%
+}
+
+\endinput
