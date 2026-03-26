@@ -1,0 +1,57 @@
+# Whitelist mode: ignore everything by default, then keep only source files.
+*
+
+# Repository metadata and documentation.
+!/.gitignore
+!/.gitattributes
+!/LICENSE
+!/README.md
+!/.github/
+!/.github/**
+
+# Thesis entry files and bibliography.
+!/main-thesis.tex
+!/main-thesis-with-appendix.tex
+!/main-translation.tex
+!/reference.bib
+!/USTSthesis.cls
+
+# Source directories.
+!/appendix/
+!/appendix/**
+!/chapters/
+!/chapters/**
+!/front/
+!/front/**
+!/style/
+!/style/**
+
+# Keep reference Word documents.
+!/*.doc
+
+# Re-ignore LaTeX build artifacts anywhere in the tree.
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.fmt
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+*.dvi
+*.ps
+*.synctex(busy)
+*.bbl-SAVE-ERROR
