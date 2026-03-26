@@ -1,0 +1,19 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{USTS-theorem}[2026/03/26 Theorem environments]
+
+% ----------------------------------------------------------
+% 定理类环境。
+% amsthm 已在 USTS-floats.sty 中加载。
+% ----------------------------------------------------------
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\heiti\bfseries 定理}[chapter]
+\newtheorem{lemma}{\heiti\bfseries 引理}[chapter]
+\newtheorem{proposition}{\heiti\bfseries 命题}[chapter]
+\newtheorem{corollary}{\heiti\bfseries 推论}[chapter]
+\newtheorem*{proofenv}{\heiti\bfseries 证明}
+
+\theoremstyle{definition}
+\newtheorem{definition}{\heiti\bfseries 定义}[chapter]
+
+\endinput

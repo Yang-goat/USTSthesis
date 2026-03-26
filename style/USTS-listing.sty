@@ -1,0 +1,77 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{USTS-listing}[2026/03/26 Lists, algorithm, code]
+
+% ----------------------------------------------------------
+% 列表、算法、代码环境设置。
+% ----------------------------------------------------------
+
+\RequirePackage{enumitem}
+\setlist[enumerate,1]{
+    label=(\arabic*),
+    leftmargin=*,
+    labelindent=2em,
+    labelsep=0.5em,
+    itemsep=0pt,
+    topsep=6pt,
+    align=left
+}
+\setlist[itemize,1]{
+    label=\textbullet,
+    leftmargin=*,
+    labelindent=2em,
+    labelsep=0.5em,
+    itemsep=0pt,
+    topsep=6pt,
+    align=left
+}
+\setlist[description]{
+    leftmargin=*,
+    labelindent=2em,
+    labelsep=0.5em,
+    itemsep=0pt,
+    topsep=6pt,
+    style=nextline,
+    font=\bfseries
+}
+
+\AtBeginEnvironment{enumerate}{\zihao{-4}\songti\setstretch{1.5}}
+\AtBeginEnvironment{itemize}{\zihao{-4}\songti\setstretch{1.5}}
+\AtBeginEnvironment{description}{\zihao{-4}\songti\setstretch{1.5}}
+
+\RequirePackage[ruled,linesnumbered,noline]{algorithm2e}
+\SetKwInput{KwIn}{输入}
+\SetKwInput{KwOut}{输出}
+\SetKw{KwTo}{至}
+\SetKw{KwBy}{步长}
+\SetKw{KwRet}{返回}
+\SetAlCapNameFnt{\heiti\bfseries\zihao{5}}
+\SetAlCapFnt{\heiti\bfseries\zihao{5}}
+\SetAlgoCaptionSeparator{：}
+\renewcommand{\algorithmcfname}{算法}
+\renewcommand{\thealgocf}{\thechapter.\arabic{algocf}}
+\SetAlgoNlRelativeSize{-1}
+\SetAlFnt{\songti\zihao{5}}
+
+\RequirePackage{listings,xcolor}
+\definecolor{lstframe}{RGB}{180,180,180}
+\lstset{
+  basicstyle=\ttfamily\zihao{-5}\linespread{1}\selectfont,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{brown},
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  xleftmargin=2em,
+  framexleftmargin=1.5em,
+  frame=single,
+  rulecolor=\color{lstframe},
+  framerule=0.6pt,
+  framesep=6pt,
+  breaklines=true,
+  tabsize=4,
+  captionpos=t
+}
+
+\endinput

@@ -1,0 +1,65 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{USTS-ref}[2026/03/26 Hyperref and cleveref]
+
+% ----------------------------------------------------------
+% 超链接与 cleveref 中文名称设置。
+% ----------------------------------------------------------
+
+\RequirePackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black,
+  pdfstartview=FitH,
+  bookmarksopen=true
+}
+\RequirePackage{bookmark}
+\RequirePackage{cleveref}
+
+\crefname{figure}{图}{图}
+\Crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+\Crefname{table}{表}{表}
+\crefname{equation}{式}{式}
+\Crefname{equation}{式}{式}
+\crefname{algocf}{算法}{算法}
+\Crefname{algocf}{算法}{算法}
+\crefname{theorem}{定理}{定理}
+\Crefname{theorem}{定理}{定理}
+\crefname{definition}{定义}{定义}
+\Crefname{definition}{定义}{定义}
+\crefname{lemma}{引理}{引理}
+\Crefname{lemma}{引理}{引理}
+\crefname{proposition}{命题}{命题}
+\Crefname{proposition}{命题}{命题}
+\crefname{corollary}{推论}{推论}
+\Crefname{corollary}{推论}{推论}
+
+\crefformat{figure}{图~#2#1#3}
+\Crefformat{figure}{图~#2#1#3}
+\crefformat{table}{表~#2#1#3}
+\Crefformat{table}{表~#2#1#3}
+\crefformat{equation}{式~(#2#1#3)}
+\Crefformat{equation}{式~(#2#1#3)}
+\crefformat{algocf}{算法~#2#1#3}
+\Crefformat{algocf}{算法~#2#1#3}
+\crefformat{theorem}{定理~#2#1#3}
+\Crefformat{theorem}{定理~#2#1#3}
+\crefformat{definition}{定义~#2#1#3}
+\Crefformat{definition}{定义~#2#1#3}
+\crefformat{lemma}{引理~#2#1#3}
+\Crefformat{lemma}{引理~#2#1#3}
+\crefformat{proposition}{命题~#2#1#3}
+\Crefformat{proposition}{命题~#2#1#3}
+\crefformat{corollary}{推论~#2#1#3}
+\Crefformat{corollary}{推论~#2#1#3}
+
+\crefrangeformat{figure}{图~#3#1#4-#5#2#6}
+\Crefrangeformat{figure}{图~#3#1#4-#5#2#6}
+\crefrangeformat{table}{表~#3#1#4-#5#2#6}
+\Crefrangeformat{table}{表~#3#1#4-#5#2#6}
+\crefrangeformat{equation}{式~(#3#1#4-#5#2#6)}
+\Crefrangeformat{equation}{式~(#3#1#4-#5#2#6)}
+
+\endinput

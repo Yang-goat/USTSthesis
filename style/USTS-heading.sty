@@ -1,0 +1,86 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{USTS-heading}[2026/03/26 Headings and TOC]
+
+% ----------------------------------------------------------
+% 标题和目录格式。
+%
+% 本文件只定义“长什么样”。
+% 是否真正输出目录，仍由入口 tex 自己决定。
+% ----------------------------------------------------------
+
+\RequirePackage{titlesec}
+\RequirePackage{titletoc}
+\RequirePackage{setspace}
+
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+\titleformat{\chapter}[hang]
+  {\centering\bfseries\heiti\zihao{-3}}
+  {第\,\thechapter\,章}
+  {1em}
+  {}
+\titlespacing*{\chapter}
+  {0pt}
+  {-0.5\baselineskip}
+  {0.75\baselineskip}
+
+\titleformat{\section}
+  {\bfseries\heiti\zihao{4}}
+  {\thesection}
+  {1em}
+  {}
+
+\titleformat{\subsection}
+  {\bfseries\heiti\zihao{-4}}
+  {\thesubsection}
+  {1em}
+  {}
+
+\setcounter{tocdepth}{2}
+
+\renewcommand{\contentsname}{%
+  {\centering\zihao{-3}\heiti\bfseries 目\hspace{1em}录}%
+  \vspace{0.75\baselineskip}%
+}
+
+\let\USTSOldTOC\tableofcontents
+\renewcommand{\tableofcontents}{%
+  \begingroup
+  \setstretch{1.5}\selectfont
+  \let\USTSOldNumberline\numberline
+  \renewcommand{\numberline}[1]{%
+    \USTSOldNumberline{{\heiti\bfseries ##1}}%
+  }%
+  \USTSOldTOC
+  \endgroup
+}
+
+\ctexset{
+  chapter = {
+    name = {第,章},
+    number = \arabic{chapter}
+  }
+}
+
+\titlecontents{chapter}
+  [0em]
+  {\zihao{5}\songti\setlength{\baselineskip}{20pt}\parskip=0pt}
+  {\bfseries\heiti\thecontentslabel\hspace{0.5em}}
+  {\bfseries\heiti}
+  {\titlerule*[0.5pc]{.}\contentspage}
+
+\titlecontents{section}
+  [1.5em]
+  {\zihao{5}\songti}
+  {{\heiti\bfseries\thecontentslabel\quad}}
+  {}
+  {\titlerule*[0.5pc]{.}\contentspage}
+
+\titlecontents{subsection}
+  [3em]
+  {\zihao{5}\songti}
+  {{\heiti\bfseries\thecontentslabel\quad}}
+  {}
+  {\titlerule*[0.5pc]{.}\contentspage}
+
+\endinput

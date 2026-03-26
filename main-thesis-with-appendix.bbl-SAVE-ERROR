@@ -1,0 +1,94 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{alorf_survey_2023}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=bd051a2f7a5f377e3a62581b0e0f8577}{%
+           family={Doe},
+           familyi={D\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=25bbf4047d900f3760c65b01ee899dba}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+      }
+      \name{namea}{2}{}{%
+        {{hash=bd051a2f7a5f377e3a62581b0e0f8577}{%
+           family={Doe},
+           familyi={D\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=25bbf4047d900f3760c65b01ee899dba}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{fullhash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{fullhashraw}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{bibnamehash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{authorbibnamehash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{authornamehash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{authorfullhash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{authorfullhashraw}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{nameabibnamehash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{nameanamehash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{nameafullhash}{29fc6131a5776bc51f4335dec1809d0d}
+      \strng{nameafullhashraw}{29fc6131a5776bc51f4335dec1809d0d}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Example Studies}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{3}
+      \field{title}{An Example Survey on Optimization Methods}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{volume}{12}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{pages}{123\bibrangedash 145}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.0000/example.doi.2023.00123
+      \endverb
+      \verb{urlraw}
+      \verb https://example.org/articles/example-survey-2023
+      \endverb
+      \verb{url}
+      \verb https://example.org/articles/example-survey-2023
+      \endverb
+      \keyw{alorf_survey_2023}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

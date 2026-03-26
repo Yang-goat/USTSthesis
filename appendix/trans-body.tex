@@ -1,0 +1,48 @@
+% ----------------------------------------------------------
+% 译文正文示例
+%
+% 如果你在 trans-meta.tex 中选择了“带摘要页”的方案，
+% 那么这里会在摘要页之后开始正文。
+%
+% 如果你在 trans-meta.tex 中选择了“不带摘要页”的方案，
+% 那么这里会在译文大标题之后直接开始正文，
+% 也就是正文第一行通常就可以直接写：
+%
+% \translationsection{第一章标题}
+% 这里开始正文内容。
+% ----------------------------------------------------------
+
+\translationsection{模板使用总览}
+本文件是外文翻译模板的正文示例。你在实际使用时，通常只需要修改译文标题页配置和本文件中的正文内容，不需要改动样式文件。
+
+\translationsubsection{选择译文类型}
+如果译文对象是论文、论文式文章，保留当前的论文式方案即可，此时会生成译文大标题、摘要页和关键词。若译文对象是书本、技术文档或一般资料，请在 \texttt{appendix/trans.tex} 中把 \texttt{\string\input\{appendix/trans-meta-article\}} 注释掉，并启用 \texttt{\string\input\{appendix/trans-meta-book\}}。
+
+\translationsubsubsection{论文式方案示例}
+论文式方案的标题页写法见 \texttt{appendix/trans-meta-article.tex}。核心写法是：先用 \texttt{\string\appendixtranslationtitle\{...\}} 写译文标题，再用 \texttt{translationabstract} 环境填写摘要，并用 \texttt{\string\translationkeywords\{...\}} 填写关键词。
+
+\translationsubsubsection{无摘要页方案示例}
+无摘要页方案的标题页写法见 \texttt{appendix/trans-meta-book.tex}。这种情况下只保留 \texttt{\string\appendixtranslationtitle\{...\}}，不写 \texttt{translationabstract} 环境，标题后直接进入正文。
+
+\translationsection{正文编写方式}
+正文写在当前文件 \texttt{appendix/trans-body.tex} 中。你可以按译文原文结构，依次使用 \texttt{\string\translationsection}、\texttt{\string\translationsubsection}、\texttt{\string\translationsubsubsection} 来组织章节。
+
+\translationsubsection{正文命令示例}
+可直接参考下面这组命令：
+
+\texttt{\string\translationsection\{第一章标题\}}
+
+\texttt{\string\translationsubsection\{1.1 小节标题\}}
+
+\texttt{\string\translationsubsubsection\{1.1.1 小节标题\}}
+
+在独立译文模式下，这些命令会按独立译文文档排版；在附录模式下，这些命令会自动使用独立的“第1章 / 1.1 / 1.1.1”编号体系。
+
+\translationsubsection{三个入口文件}
+2.0.0 版本共有三个入口文件：\texttt{main-thesis.tex} 用于正文，\texttt{main-translation.tex} 用于单独编译译文，\texttt{main-thesis-with-appendix.tex} 用于生成含附录的完整论文。
+
+\translationsection{原文附录配置}
+若需要在完整论文中同时附上外文原文 PDF，请编辑 \texttt{appendix/origin.tex}。该文件只需要配置附录标题和 PDF 路径，然后保留 \texttt{\string\USTSIncludeOriginAppendix} 不变即可。
+
+\translationsubsection{原文附录示例}
+典型写法如下：先用 \texttt{\string\setoriginappendixtitle\{外文原文\}} 设置标题，再用 \texttt{\string\setoriginpdfpath\{appendix/你的原文.pdf\}} 指定 PDF 路径，最后调用 \texttt{\string\USTSIncludeOriginAppendix}。
