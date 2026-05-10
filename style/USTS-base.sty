@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{USTS-base}[2026/03/26 Base settings]
+\ProvidesPackage{USTS-base}[2026/05/10 Base settings]
 
 % ----------------------------------------------------------
 % 三种文档模式共用的基础设置。
@@ -25,8 +25,12 @@
 \RequirePackage{etoolbox}
 
 % 字体设置保持与原始 cls 一致。
-\setCJKmainfont{SimSun}
-\setCJKsansfont[AutoFakeBold=true]{SimHei}
+% SimHei 没有独立粗体字形；Word 中“黑体+加粗”实际是加粗渲染。
+% 因此这里显式为 \heiti 对应的 zhhei 字族启用伪粗体。
+\setCJKmainfont[AutoFakeBold=3,ItalicFont=SimSun]{SimSun}
+\setCJKsansfont[AutoFakeBold=3]{SimHei}
+\setCJKfamilyfont{zhsong}[AutoFakeBold=3,ItalicFont=SimSun]{SimSun}
+\setCJKfamilyfont{zhhei}[AutoFakeBold=3]{SimHei}
 \setCJKmonofont{FangSong}
 \setmainfont{Times New Roman}
 

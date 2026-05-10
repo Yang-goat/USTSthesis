@@ -6,8 +6,9 @@
 
 推荐按以下顺序组织内容：
 \begin{enumerate}
-  \item 在 \verb|main.tex| 中维护论文整体顺序（摘要、目录、正文、结论、参考文献、附录）。
-  \item 在 \verb|chapters/| 下按章节拆分正文（如 \verb|ch1.tex|、\verb|ch2.tex|）。
+  \item 在 \verb|main-thesis.tex| 或 \verb|main-thesis-with-appendix.tex| 中维护论文整体顺序（摘要、目录、正文、结论、参考文献、附录）。
+  \item 在 \verb|chapters/| 下按章节拆分正文（如 \verb|introduction.tex|、\verb|ch2.tex|）。
+  \item 将论文图片统一放入 \verb|img/|，正文中使用 \verb|img/文件名.png| 引用。
   \item 在 \verb|reference.bib| 中维护参考文献条目，在正文通过 \verb|\cite{key}| 引用。
 \end{enumerate}
 
@@ -34,6 +35,17 @@
   \item 混合引用：写作检查项可结合第\ref{sec:usage-crossref}节与\cref{alg:usage-opt}说明。
 \end{itemize}
 
+\section{字体与加粗示例}
+
+模板已经统一设置正文、标题、目录和图表等位置的字体。正文中确需强调时，可使用以下写法：
+\begin{itemize}
+  \item 普通中文加粗：\textbf{关键结论}。
+  \item 黑体加粗强调：{\heiti\bfseries 关键结论}。
+  \item 英文加粗：\textbf{important result}。
+\end{itemize}
+
+其中 \verb|\textbf{中文}| 会使用宋体加粗渲染，\verb|{\heiti\bfseries ...}| 会使用黑体加粗渲染，更接近 Word 中“黑体+加粗”的效果。
+
 \section{图表写作规范}
 
 \subsection{插图}
@@ -43,6 +55,7 @@
   % 修改图尺寸：把 0.62 改成 0.5/0.7 等；也可改为 height=6cm
   % 常用位置参数：[H] 强制当前位置；[htbp] 允许浮动优化排版
   \includegraphics[width=0.62\textwidth]{example-image-a}
+  % 正式论文可改为：\includegraphics[width=0.62\textwidth]{img/result.png}
   \caption{单图示例（替换为你的实验图）}
   \label{fig:usage-single}
 \end{figure}
@@ -53,7 +66,8 @@
   \begin{subfigure}{0.48\textwidth}
     \centering
     % 子图内部再调大小：通常保持 width=\textwidth
-    \includegraphics[width=\textwidth]{example-image-a} % 对于自己的图片请将图片放置到img文件夹中，并在这里填写`img\xxx.png`
+    \includegraphics[width=\textwidth]{example-image-a}
+    % 正式论文可改为：\includegraphics[width=\textwidth]{img/result-a.png}
     \caption{子图A}
     \label{fig:usage-sub-a}
   \end{subfigure}

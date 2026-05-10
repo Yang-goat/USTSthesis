@@ -2,11 +2,11 @@
 
 苏州科技大学本科毕业设计（论文）LaTeX 模板
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)
 ![License: LPPL 1.3c](https://img.shields.io/badge/license-LPPL%201.3c-green.svg)
 ![Build: XeLaTeX + Biber](https://img.shields.io/badge/build-XeLaTeX%20%2B%20Biber-orange.svg)
 
-本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.0.0` 版本已经完成三文档重构，可同时支持：
+本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.1.0` 版本已经完成三文档重构，并继续优化了字体粗细、图片目录和使用说明，可同时支持：
 
 - 毕业论文正文
 - 单独的外文翻译译文
@@ -16,46 +16,31 @@
 
 ## 版本信息
 
-- 当前版本：`2.0.0`
-- 更新日期：`2026-03-26`
+- 当前版本：`2.1.0`
+- 更新日期：`2026-05-10`
 - 编译方式：`XeLaTeX + Biber`
 - 格式参考：[苏州科技大学 毕业设计（论文）样式](https://bylw.usts.edu.cn/bysj/NewsDetail.aspx?ConfigurationID=8F0lgC4y7Ho%3d&HomePageManagementID=X0H9ludZcp8%3d)
 
 ---
 
-## 2.0.0 更新内容
+## 2.1.0 更新内容
 
-- 入口文件重构：
-  - 删除旧的单入口 `main.tex`
-  - 新增 [main-thesis.tex](main-thesis.tex)、[main-translation.tex](main-translation.tex)、[main-thesis-with-appendix.tex](main-thesis-with-appendix.tex)
-  - 三个入口分别对应“正文”“独立译文”“正文+附录”
-- 类文件重构：
-  - [USTSthesis.cls](USTSthesis.cls) 从原来的大一统类文件改成“模式分发器”
-  - 版式、页眉页脚、目录、图表、参考文献、定理、代码、译文逻辑拆分到 [style/](style/) 下多个 `.sty`
-  - 当前模块包括：`USTS-base`、`USTS-page`、`USTS-heading`、`USTS-floats`、`USTS-ref`、`USTS-listing`、`USTS-theorem`、`USTS-bib`、`USTS-translation`
-- 章节结构重构：
-  - 删除旧的 `chapters/ch1.tex`
-  - 将正文入口改为 [chapters/introduction.tex](chapters/introduction.tex)
-  - 重写 [chapters/ch2.tex](chapters/ch2.tex) 作为正文模板使用说明
-  - 保留并调整 [chapters/ch3.tex](chapters/ch3.tex)、[chapters/ch4.tex](chapters/ch4.tex)、[chapters/ch5.tex](chapters/ch5.tex)
-  - 新增 [chapters/ch6.tex](chapters/ch6.tex)
-  - 致谢从旧的 `front/acknowledgement.tex` 移到 [chapters/acknowledgement.tex](chapters/acknowledgement.tex)
-- 附录结构重构：
-  - 删除旧的 `appendix/appendixA.tex`、`appendix/appendixB.tex`、`appendix/appendixC.tex`
-  - 新增 [appendix/trans.tex](appendix/trans.tex) 作为外文翻译总入口
-  - 新增 [appendix/origin.tex](appendix/origin.tex) 作为外文原文 PDF 配置入口
-  - 新增 [appendix/trans-meta-article.tex](appendix/trans-meta-article.tex)、[appendix/trans-meta-book.tex](appendix/trans-meta-book.tex)、[appendix/trans-body.tex](appendix/trans-body.tex)
-- 译文逻辑重构：
-  - 独立译文模式下：无英文摘要页、无页眉、无目录、全篇阿拉伯页码
-  - 附录模式下：译文作为正式附录 A 插入论文，沿用论文页眉与连续页码
-  - 译文内部标题采用独立编号：`第1章 / 1.1 / 1.1.1`
-  - 译文内部编号不接正文，也不与附录字母编号混用
-- 目录与附录行为重构：
-  - 译文附录目录中只保留“附录 A 外文翻译”和译文大标题
-  - 译文内部子标题不写入目录
-  - 原文附录目录中只保留“附录 B 外文原文”
-  - 原文 PDF 首页自动叠加附录标题
-  - 修复了原文附录多出一页空白标题页的问题
+- 字体粗细优化：
+  - 为 `\heiti` 对应的 `zhhei` 字族启用伪粗体，已有标题中的 `\heiti\bfseries` 现在会呈现为接近 Word 的“黑体+加粗”。
+  - 为宋体字族补齐中文 `\textbf{...}` 的加粗渲染，正文和表格中的中文粗体不再退回普通宋体。
+  - 将中文斜体形状映射回宋体，避免定理环境触发中文字体形状缺失警告。
+- 模板元数据更新：
+  - 类文件版本更新为 `v2.1.0`。
+  - `USTSthesis.cls` 和 `style/` 下各模块日期更新为 `2026/05/10`。
+- 图片目录约定：
+  - 新增 [img/](img/) 作为论文图片推荐存放目录。
+  - 更新正文示例，提示用户将自有图片放入 `img/` 并使用 `img/文件名.png` 的路径写法。
+- 仓库维护：
+  - 新增 `.gitignore`，忽略常见 LaTeX 编译中间文件。
+  - 移除自动 release workflow，后续 release 改为手动发布。
+- 示例与文档：
+  - 刷新三个入口的示例 PDF。
+  - README 补充图片、字体和编译清理说明。
 
 ---
 
@@ -66,13 +51,14 @@
 - [front/](front/)：中英文摘要等前置部分
 - [chapters/](chapters/)：论文章节
 - [appendix/](appendix/)：外文翻译与原文附录
+- [img/](img/)：论文图片推荐存放目录
 - [reference.bib](reference.bib)：参考文献数据库
 
 三套主入口：
 
-- [main-thesis.tex](main-thesis.tex)
-- [main-translation.tex](main-translation.tex)
-- [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex)
+- [main-thesis.tex](main-thesis.tex)：只生成毕业论文正文
+- [main-translation.tex](main-translation.tex)：只生成单独外文翻译
+- [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex)：生成含外文翻译与外文原文附录的完整论文
 
 ---
 
@@ -144,7 +130,7 @@ latexmk -xelatex main-thesis-with-appendix.tex
 外文翻译统一从 [appendix/trans.tex](appendix/trans.tex) 进入。它负责两件事：
 
 - 选择“带摘要页”还是“不带摘要页”
-- [appendix/trans-body.tex](appendix/trans-body.tex)
+- 引入 [appendix/trans-body.tex](appendix/trans-body.tex) 中的译文正文
 
 ### 第一步：选择译文类型
 
@@ -245,14 +231,58 @@ latexmk -xelatex main-thesis-with-appendix.tex
 
 ---
 
+## 图片怎么放
+
+建议把论文图片统一放入 [img/](img/)。
+
+正文中按相对路径引用，例如：
+
+```tex
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.62\textwidth]{img/result.png}
+  \caption{实验结果图}
+  \label{fig:result}
+\end{figure}
+```
+
+注意：
+
+- LaTeX 路径建议统一使用 `/`，即 `img/result.png`，不要写成 Windows 反斜杠。
+- 文件名尽量使用英文、数字、短横线或下划线，减少跨平台编译问题。
+- 示例文件仍保留 `example-image-a`、`example-image-b`，这些是 LaTeX 自带占位图；正式论文替换为自己的 `img/...` 路径即可。
+
+---
+
+## 字体和加粗怎么用
+
+大多数位置不需要手动设置字体，模板已经为章节标题、目录、摘要标题、关键词、图表标题和定理标题配置好字体。
+
+需要在正文中手动加粗时：
+
+```tex
+普通中文加粗：\textbf{关键结论}
+黑体加粗强调：{\heiti\bfseries 关键结论}
+英文加粗：\textbf{important result}
+```
+
+说明：
+
+- `\textbf{中文}` 会使用宋体加粗渲染。
+- `{\heiti\bfseries ...}` 会使用黑体加粗渲染，更接近 Word 中“黑体+加粗”的效果。
+- 不建议大段正文手动切换字体；学校格式相关的标题类样式优先交给模板控制。
+
+---
+
 ## 推荐使用流程
 
 ### 只写正文
 
 1. 修改 [front/abstract_zh.tex](front/abstract_zh.tex) 和 [front/abstract_en.tex](front/abstract_en.tex)
 2. 修改 [chapters/](chapters/) 下各章内容
-3. 修改 [reference.bib](reference.bib)
-4. 编译 [main-thesis.tex](main-thesis.tex)
+3. 将论文图片放到 [img/](img/) 并在正文中用 `img/文件名.png` 引用
+4. 修改 [reference.bib](reference.bib)
+5. 编译 [main-thesis.tex](main-thesis.tex)
 
 ### 只写单独外文翻译
 
@@ -293,6 +323,15 @@ xelatex main-thesis-with-appendix
 
 - 含参考文献的文档需要 `biber`
 - 单独译文文档通常不需要 `biber`
+- `.gitignore` 已忽略常见 LaTeX 中间文件；需要清理当前目录时可运行 `latexmk -C`
+
+如果没有安装 `latexmk`，可以直接用 XeLaTeX 编译当前模板示例：
+
+```bash
+xelatex main-thesis.tex
+xelatex main-translation.tex
+xelatex main-thesis-with-appendix.tex
+```
 
 ---
 
@@ -307,6 +346,7 @@ xelatex main-thesis-with-appendix
 | **1.0.2** | 2026-02-24 | 优化证明环境样式。 |
 | **1.0.3** | 2026-02-26 | 优化伪代码算法样式，新增章节引用示例。 |
 | **2.0.0** | 2026-03-26 | 相对 `v1.0.3` 完成整体重构：旧 `main.tex` 拆为三个入口，`USTSthesis.cls` 模块化，旧 appendixA/B/C 体系改为 `trans/origin` 入口，补齐独立译文与附录译文两种模式，并重组章节与致谢文件结构。 |
+| **2.1.0** | 2026-05-10 | 字体粗细优化：黑体加粗接近 Word 效果，中文 `\textbf` 正常加粗；新增 `img/` 图片目录约定、`.gitignore`，移除自动 release workflow，并完善 README 与正文示例说明。 |
 
 ---
 
