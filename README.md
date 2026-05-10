@@ -2,11 +2,11 @@
 
 苏州科技大学本科毕业设计（论文）LaTeX 模板
 
-![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.1.1-blue.svg)
 ![License: LPPL 1.3c](https://img.shields.io/badge/license-LPPL%201.3c-green.svg)
 ![Build: XeLaTeX + Biber](https://img.shields.io/badge/build-XeLaTeX%20%2B%20Biber-orange.svg)
 
-本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.1.0` 版本已经完成三文档重构，并继续优化了字体粗细、图片目录和使用说明，可同时支持：
+本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.1.1` 版本已经完成三文档重构，并继续优化了字体粗细、图片目录、文献引用和使用说明，可同时支持：
 
 - 毕业论文正文
 - 单独的外文翻译译文
@@ -16,22 +16,25 @@
 
 ## 版本信息
 
-- 当前版本：`2.1.0`
+- 当前版本：`2.1.1`
 - 更新日期：`2026-05-10`
 - 编译方式：`XeLaTeX + Biber`
 - 格式参考：[苏州科技大学 毕业设计（论文）样式](https://bylw.usts.edu.cn/bysj/NewsDetail.aspx?ConfigurationID=8F0lgC4y7Ho%3d&HomePageManagementID=X0H9ludZcp8%3d)
 
 ---
 
-## 2.1.0 更新内容
+## 2.1.1 更新内容
 
 - 字体粗细优化：
   - 为 `\heiti` 对应的 `zhhei` 字族启用伪粗体，已有标题中的 `\heiti\bfseries` 现在会呈现为接近 Word 的“黑体+加粗”。
   - 为宋体字族补齐中文 `\textbf{...}` 的加粗渲染，正文和表格中的中文粗体不再退回普通宋体。
   - 将中文斜体形状映射回宋体，避免定理环境触发中文字体形状缺失警告。
 - 模板元数据更新：
-  - 类文件版本更新为 `v2.1.0`。
+  - 类文件版本更新为 `v2.1.1`。
   - `USTSthesis.cls` 和 `style/` 下各模块日期更新为 `2026/05/10`。
+- 文献引用优化：
+  - 参考文献排序改为按正文引用顺序输出，避免按作者/年份重排后与正文引用顺序不一致。
+  - 默认隐藏 URL，保留 DOI 和 eprint 信息，使参考文献列表更贴近毕业论文版式，同时保留关键电子出版信息。
 - 图片目录约定：
   - 新增 [img/](img/) 作为论文图片推荐存放目录。
   - 更新正文示例，提示用户将自有图片放入 `img/` 并使用 `img/文件名.png` 的路径写法。
@@ -274,6 +277,16 @@ latexmk -xelatex main-thesis-with-appendix.tex
 
 ---
 
+## 参考文献怎么用
+
+参考文献条目统一写在 [reference.bib](reference.bib)，正文中使用 `\cite{key}` 引用。
+
+2.1.1 版本默认按正文首次引用顺序输出参考文献，不再按作者和年份重新排序。因此通常只需要调整正文引用顺序，不需要手动改 `.bib` 文件中的条目先后。
+
+文献列表默认隐藏 URL，保留 DOI 和 eprint 信息。若学校或学院要求必须显示 URL，可在 [style/USTS-bib.sty](style/USTS-bib.sty) 中把 `url=false` 改为 `url=true`。
+
+---
+
 ## 推荐使用流程
 
 ### 只写正文
@@ -346,7 +359,7 @@ xelatex main-thesis-with-appendix.tex
 | **1.0.2** | 2026-02-24 | 优化证明环境样式。 |
 | **1.0.3** | 2026-02-26 | 优化伪代码算法样式，新增章节引用示例。 |
 | **2.0.0** | 2026-03-26 | 相对 `v1.0.3` 完成整体重构：旧 `main.tex` 拆为三个入口，`USTSthesis.cls` 模块化，旧 appendixA/B/C 体系改为 `trans/origin` 入口，补齐独立译文与附录译文两种模式，并重组章节与致谢文件结构。 |
-| **2.1.0** | 2026-05-10 | 字体粗细优化：黑体加粗接近 Word 效果，中文 `\textbf` 正常加粗；新增 `img/` 图片目录约定、`.gitignore`，移除自动 release workflow，并完善 README 与正文示例说明。 |
+| **2.1.1** | 2026-05-10 | 合并 2.1.x 更新：字体粗细优化，黑体加粗接近 Word 效果，中文 `\textbf` 正常加粗；参考文献按正文引用顺序输出，隐藏 URL 并保留 DOI/eprint；新增 `img/` 图片目录约定、`.gitignore`，移除自动 release workflow，并完善 README 与正文示例说明。 |
 
 ---
 

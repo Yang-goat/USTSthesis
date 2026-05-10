@@ -18,7 +18,7 @@
 
 
 \refsection{0}
-  \datalist[entry]{nyt/global//global/global/global}
+  \datalist[entry]{none/global//global/global/global}
     \entry{alorf_survey_2023}{article}{}{}
       \name{author}{2}{}{%
         {{hash=bd051a2f7a5f377e3a62581b0e0f8577}{%
@@ -59,8 +59,8 @@
       \strng{nameanamehash}{29fc6131a5776bc51f4335dec1809d0d}
       \strng{nameafullhash}{29fc6131a5776bc51f4335dec1809d0d}
       \strng{nameafullhashraw}{29fc6131a5776bc51f4335dec1809d0d}
-      \field{sortinit}{D}
-      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Example Studies}
