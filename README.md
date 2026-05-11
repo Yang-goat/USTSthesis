@@ -2,11 +2,11 @@
 
 苏州科技大学本科毕业设计（论文）LaTeX 模板
 
-![Version](https://img.shields.io/badge/version-2.1.1-blue.svg)
+![Version](https://img.shields.io/badge/version-2.1.2-blue.svg)
 ![License: LPPL 1.3c](https://img.shields.io/badge/license-LPPL%201.3c-green.svg)
 ![Build: XeLaTeX + Biber](https://img.shields.io/badge/build-XeLaTeX%20%2B%20Biber-orange.svg)
 
-本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.1.1` 版本已经完成三文档重构，并继续优化了字体粗细、图片目录、文献引用和使用说明，可同时支持：
+本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.1.2` 版本在三文档架构基础上优化了新手入门教程、多文件结构说明和 VS Code 编译提示，可同时支持：
 
 - 毕业论文正文
 - 单独的外文翻译译文
@@ -16,52 +16,58 @@
 
 ## 版本信息
 
-- 当前版本：`2.1.1`
-- 更新日期：`2026-05-10`
+- 当前版本：`2.1.2`
+- 更新日期：`2026-05-11`
 - 编译方式：`XeLaTeX + Biber`
 - 格式参考：[苏州科技大学 毕业设计（论文）样式](https://bylw.usts.edu.cn/bysj/NewsDetail.aspx?ConfigurationID=8F0lgC4y7Ho%3d&HomePageManagementID=X0H9ludZcp8%3d)
 
 ---
 
-## 2.1.1 更新内容
+## 2.1.2 更新内容
 
-- 字体粗细优化：
-  - 为 `\heiti` 对应的 `zhhei` 字族启用伪粗体，已有标题中的 `\heiti\bfseries` 现在会呈现为接近 Word 的“黑体+加粗”。
-  - 为宋体字族补齐中文 `\textbf{...}` 的加粗渲染，正文和表格中的中文粗体不再退回普通宋体。
-  - 将中文斜体形状映射回宋体，避免定理环境触发中文字体形状缺失警告。
+- 新手入门说明优化：
+  - 将项目解释为“内容文件 + 主入口文件”的多文件结构，帮助首次使用 LaTeX 或首次接触模板拆分结构的用户理解整体架构。
+  - 明确 `front/`、`chapters/`、`appendix/`、`img/`、`reference.bib` 与三个 `main-*.tex` 主入口之间的关系。
+  - 说明外文翻译的特殊复用方式：同一份译文内容既可单独生成译文文档，也可被完整论文作为附录引用。
+- 使用流程重排：
+  - 将“推荐使用流程”提前到“三个文档怎么用”之后。
+  - 按第一次打开项目、写毕业论文正文、写单独外文翻译、生成带附录最终论文四个场景整理步骤。
+  - 补充新增章节时需要同步修改正文入口和完整论文入口的说明。
+- VS Code 编译提醒：
+  - 补充 LaTeX Workshop 等插件环境下的编译建议，提醒每次打开项目后选择正确配方，例如 `xelatex -> biber -> xelatex -> xelatex`。
+  - 说明应先编译当前维护的主入口文件，让插件在保存内容文件时自动回到该主入口编译；其他主入口需要手动同步编译。
+- 文件注释补充：
+  - 为每个 `.tex` 文件增加第一行用途注释，说明该文件的作用和在模板结构中的位置。
 - 模板元数据更新：
-  - 类文件版本更新为 `v2.1.1`。
-  - `USTSthesis.cls` 和 `style/` 下各模块日期更新为 `2026/05/10`。
-- 文献引用优化：
-  - 参考文献排序改为按正文引用顺序输出，避免按作者/年份重排后与正文引用顺序不一致。
-  - 默认隐藏 URL，保留 DOI 和 eprint 信息，使参考文献列表更贴近毕业论文版式，同时保留关键电子出版信息。
-- 图片目录约定：
-  - 新增 [img/](img/) 作为论文图片推荐存放目录。
-  - 更新正文示例，提示用户将自有图片放入 `img/` 并使用 `img/文件名.png` 的路径写法。
-- 仓库维护：
-  - 新增 `.gitignore`，忽略常见 LaTeX 编译中间文件。
-  - 移除自动 release workflow，后续 release 改为手动发布。
-- 示例与文档：
-  - 刷新三个入口的示例 PDF。
-  - README 补充图片、字体和编译清理说明。
+  - 类文件版本更新为 `v2.1.2`。
 
 ---
 
 ## 项目结构
 
-- [USTSthesis.cls](USTSthesis.cls)：模板类文件
-- [style/](style/)：样式模块
-- [front/](front/)：中英文摘要等前置部分
-- [chapters/](chapters/)：论文章节
-- [appendix/](appendix/)：外文翻译与原文附录
-- [img/](img/)：论文图片推荐存放目录
-- [reference.bib](reference.bib)：参考文献数据库
+如果你是第一次使用 LaTeX 或第一次接触多文件模板，可以先把这个项目理解成“内容文件 + 主入口文件”的结构：
 
-三套主入口：
+- 内容文件负责写具体内容，例如摘要、正文各章、致谢、外文翻译正文。
+- 主入口文件负责决定把哪些内容按什么顺序汇总成一个 PDF。
+- 平时大多数修改都发生在内容文件里；编译时通常选择一个主入口文件编译。
 
-- [main-thesis.tex](main-thesis.tex)：只生成毕业论文正文
-- [main-translation.tex](main-translation.tex)：只生成单独外文翻译
-- [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex)：生成含外文翻译与外文原文附录的完整论文
+核心文件和目录如下：
+
+- [USTSthesis.cls](USTSthesis.cls)：模板类文件，控制整体版式、页眉页脚、章节样式等。一般不需要改。
+- [style/](style/)：样式模块，拆分存放模板内部样式。一般不需要改。
+- [front/](front/)：论文前置内容，目前包含中文摘要和英文摘要。
+- [chapters/](chapters/)：论文正文内容，每个 `.tex` 文件对应一个章节或后置章节。写正文时主要改这里。
+- [appendix/](appendix/)：外文翻译和外文原文附录。译文有一点特殊：同一份译文内容既可以单独编译成“外文翻译”文档，也可以被完整论文作为附录引用。
+- [img/](img/)：论文图片推荐存放目录。
+- [reference.bib](reference.bib)：参考文献数据库，正文中通过 `\cite{key}` 引用。
+
+三个主入口文件如下：
+
+- [main-thesis.tex](main-thesis.tex)：只汇总论文正文相关内容，生成毕业论文正文 PDF。
+- [main-translation.tex](main-translation.tex)：只汇总外文翻译相关内容，生成单独的外文翻译 PDF。
+- [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex)：在论文正文后继续汇总外文翻译和外文原文 PDF，生成含附录的完整论文 PDF。
+
+换句话说，正文、摘要、参考文献、译文正文等内容尽量各写各的，最后由三个 `main-*.tex` 入口按不同用途装配成不同文档。
 
 ---
 
@@ -125,6 +131,42 @@ latexmk -xelatex main-translation.tex
 ```bash
 latexmk -xelatex main-thesis-with-appendix.tex
 ```
+
+---
+
+## 推荐使用流程
+
+### 第一次打开项目时
+
+1. 先不要改模板样式文件，重点看三个主入口：`main-thesis.tex`、`main-translation.tex`、`main-thesis-with-appendix.tex`。
+2. 确认你当前要生成哪一种文档：正文、单独译文，还是带附录的完整论文。
+3. 先编译一次对应主入口，确认本机 LaTeX 环境可用。
+4. 后续写作时主要修改 `front/`、`chapters/`、`appendix/`、`img/` 和 `reference.bib`。
+
+### 写毕业论文正文
+
+1. 在 [front/abstract_zh.tex](front/abstract_zh.tex) 填写中文摘要和关键词。
+2. 在 [front/abstract_en.tex](front/abstract_en.tex) 填写英文摘要和关键词。
+3. 在 [chapters/](chapters/) 下按章节写正文。可以先替换已有示例内容，再按需要新增章节文件。
+4. 如果新增章节文件，需要在 `main-thesis.tex` 和 `main-thesis-with-appendix.tex` 中增加对应的 `\include{chapters/文件名}`。
+5. 将论文图片放到 [img/](img/) 中，在正文里用 `img/文件名.png` 这类路径引用。
+6. 在 [reference.bib](reference.bib) 中维护参考文献，在正文中使用 `\cite{key}` 引用。
+7. 编译 [main-thesis.tex](main-thesis.tex) 查看正文版本。
+
+### 写单独外文翻译
+
+1. 在 [appendix/trans.tex](appendix/trans.tex) 选择译文类型：论文式文章使用 `trans-meta-article`，书本或技术文档使用 `trans-meta-book`。
+2. 在对应的 [appendix/trans-meta-article.tex](appendix/trans-meta-article.tex) 或 [appendix/trans-meta-book.tex](appendix/trans-meta-book.tex) 中填写译文标题、摘要和关键词等信息。
+3. 在 [appendix/trans-body.tex](appendix/trans-body.tex) 中填写译文正文。
+4. 编译 [main-translation.tex](main-translation.tex) 查看单独译文版本。
+
+### 生成带附录的最终论文
+
+1. 先完成正文、摘要、参考文献等论文主体内容。
+2. 完成 [appendix/trans.tex](appendix/trans.tex) 这一套外文翻译内容。
+3. 在 [appendix/origin.tex](appendix/origin.tex) 中设置外文原文 PDF 的标题和路径。
+4. 编译 [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex) 查看带附录的完整论文。
+5. 如果你同时维护正文版、译文版和完整版，最终提交前建议三个主入口都编译一次，避免某一个文档没有同步到最新内容。
 
 ---
 
@@ -281,35 +323,9 @@ latexmk -xelatex main-thesis-with-appendix.tex
 
 参考文献条目统一写在 [reference.bib](reference.bib)，正文中使用 `\cite{key}` 引用。
 
-2.1.1 版本默认按正文首次引用顺序输出参考文献，不再按作者和年份重新排序。因此通常只需要调整正文引用顺序，不需要手动改 `.bib` 文件中的条目先后。
+自 2.1.1 版本起，模板默认按正文首次引用顺序输出参考文献，不再按作者和年份重新排序。因此通常只需要调整正文引用顺序，不需要手动改 `.bib` 文件中的条目先后。
 
 文献列表默认隐藏 URL，保留 DOI 和 eprint 信息。若学校或学院要求必须显示 URL，可在 [style/USTS-bib.sty](style/USTS-bib.sty) 中把 `url=false` 改为 `url=true`。
-
----
-
-## 推荐使用流程
-
-### 只写正文
-
-1. 修改 [front/abstract_zh.tex](front/abstract_zh.tex) 和 [front/abstract_en.tex](front/abstract_en.tex)
-2. 修改 [chapters/](chapters/) 下各章内容
-3. 将论文图片放到 [img/](img/) 并在正文中用 `img/文件名.png` 引用
-4. 修改 [reference.bib](reference.bib)
-5. 编译 [main-thesis.tex](main-thesis.tex)
-
-### 只写单独外文翻译
-
-1. 在 [appendix/trans.tex](appendix/trans.tex) 选择有无摘要页方案
-2. 修改对应的 [appendix/trans-meta-article.tex](appendix/trans-meta-article.tex) 或 [appendix/trans-meta-book.tex](appendix/trans-meta-book.tex)
-3. 在 [appendix/trans-body.tex](appendix/trans-body.tex) 写正文
-4. 编译 [main-translation.tex](main-translation.tex)
-
-### 生成带附录的最终论文
-
-1. 先完成正文
-2. 再完成 [appendix/trans.tex](appendix/trans.tex) 这一套译文内容
-3. 在 [appendix/origin.tex](appendix/origin.tex) 配置原文 PDF
-4. 编译 [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex)
 
 ---
 
@@ -336,9 +352,22 @@ xelatex main-thesis-with-appendix
 
 - 含参考文献的文档需要 `biber`
 - 单独译文文档通常不需要 `biber`
+- `front/`、`chapters/`、`appendix/` 下的内容文件不是完整文档，通常不要直接编译它们，而是编译三个 `main-*.tex` 主入口之一。
 - `.gitignore` 已忽略常见 LaTeX 中间文件；需要清理当前目录时可运行 `latexmk -C`
 
-如果没有安装 `latexmk`，可以直接用 XeLaTeX 编译当前模板示例：
+### VS Code 插件编译提醒
+
+如果你使用 VS Code + LaTeX Workshop 这类插件编译，每次打开项目后建议先确认当前选择的是正确的编译配方，例如：
+
+```text
+xelatex -> biber -> xelatex -> xelatex
+```
+
+或者插件中等价的 `xelatex、biber、xelatex*2` 配方。然后先对当前要维护的某一个主文件执行一次编译，例如 [main-thesis.tex](main-thesis.tex)、[main-translation.tex](main-translation.tex) 或 [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex)。
+
+这样做的目的是让插件知道你现在正在维护哪一个主文档。之后即使你修改并保存的是 `chapters/ch2.tex`、`front/abstract_zh.tex` 或 `appendix/trans-body.tex` 这类内容文件，插件通常也会自动回到刚才的主文件继续编译。其他两个主入口不会自动同步编译，需要你在需要时手动编译一次。
+
+如果没有安装 `latexmk`，可以直接用 XeLaTeX 预览当前模板示例；若文档包含参考文献，仍需要按上面的手动流程执行 `biber` 后再运行两次 XeLaTeX：
 
 ```bash
 xelatex main-thesis.tex
@@ -360,6 +389,7 @@ xelatex main-thesis-with-appendix.tex
 | **1.0.3** | 2026-02-26 | 优化伪代码算法样式，新增章节引用示例。 |
 | **2.0.0** | 2026-03-26 | 相对 `v1.0.3` 完成整体重构：旧 `main.tex` 拆为三个入口，`USTSthesis.cls` 模块化，旧 appendixA/B/C 体系改为 `trans/origin` 入口，补齐独立译文与附录译文两种模式，并重组章节与致谢文件结构。 |
 | **2.1.1** | 2026-05-10 | 合并 2.1.x 更新：字体粗细优化，黑体加粗接近 Word 效果，中文 `\textbf` 正常加粗；参考文献按正文引用顺序输出，隐藏 URL 并保留 DOI/eprint；新增 `img/` 图片目录约定、`.gitignore`，移除自动 release workflow，并完善 README 与正文示例说明。 |
+| **2.1.2** | 2026-05-11 | 文档整理更新：优化新手入门教程和多文件架构说明，提前并细化推荐使用流程，补充 VS Code 插件编译提醒，并为每个 `.tex` 文件增加用途注释。 |
 
 ---
 
