@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{USTS-translation}[2026/05/10 Translation module]
+\ProvidesPackage{USTS-translation}[2026/05/15 Translation module]
 
 % ----------------------------------------------------------
 % 译文与原文附录相关逻辑：
@@ -12,8 +12,10 @@
 
 \newif\ifUSTSStandaloneTrans
 \newif\ifUSTSAppendixTrans
+\newif\ifUSTSAfterTranslationTitle
 \USTSStandaloneTransfalse
 \USTSAppendixTransfalse
+\USTSAfterTranslationTitlefalse
 
 \newcommand{\USTSOriginAppendixTitle}{外文原文}
 \newcommand{\USTSOriginPDFPath}{appendix/外文原文.pdf}
@@ -26,6 +28,17 @@
 \renewcommand{\theUSTStranslationsubsection}{\theUSTStranslationsection.\arabic{USTStranslationsubsection}}
 
 \makeatletter
+\let\USTSOriginalTheEquation\theequation
+\newcommand{\USTSTranslationTheEquation}{%
+  \theUSTStranslationchapter.\arabic{equation}%
+}
+\newcommand{\USTSUseTranslationEquationNumbers}{%
+  \let\theequation\USTSTranslationTheEquation
+}
+\newcommand{\USTSRestoreEquationNumbers}{%
+  \let\theequation\USTSOriginalTheEquation
+}
+
 \newcommand{\USTSStartAppendixMatter}{%
   \cleardoublepage
   \@mainmattertrue
@@ -42,6 +55,28 @@
   \chapter*{\USTSAppendixHeadingText{#1}}%
   \addcontentsline{toc}{chapter}{\USTSAppendixHeadingText{#1}}%
 }
+
+\makeatletter
+\newcommand{\USTSTranslationChapterHeadingNoClear}[1]{%
+  \par
+  \vspace{0.75\baselineskip}%
+  \begin{center}
+    {\bfseries\heiti\zihao{-3} 第\,\thechapter\,章\hspace{1em}#1}%
+  \end{center}%
+  \vspace{0.75\baselineskip}%
+  \@afterheading
+}
+
+\newcommand{\USTSAppendixTranslationChapterHeadingNoClear}[1]{%
+  \par
+  \vspace{0.75\baselineskip}%
+  \begin{center}
+    {\bfseries\heiti\zihao{-3} 第\,\theUSTStranslationchapter\,章\hspace{1em}#1}%
+  \end{center}%
+  \vspace{0.75\baselineskip}%
+  \@afterheading
+}
+\makeatother
 
 % ------------------ 模式设置入口 ------------------
 \newcommand{\USTSSetupThesis}{%
@@ -83,9 +118,11 @@
   \fi
   \zihao{-4}\songti
   \setstretch{1.5}\selectfont%
+  \USTSAfterTranslationTitletrue
 }
 
 \newenvironment{translationabstract}{%
+  \USTSAfterTranslationTitlefalse
   \par
   \begin{center}
     \zihao{-3}\heiti\bfseries 摘\quad 要%
@@ -110,6 +147,8 @@
     \setcounter{USTStranslationchapter}{0}%
     \setcounter{USTStranslationsection}{0}%
     \setcounter{USTStranslationsubsection}{0}%
+    \setcounter{equation}{0}%
+    \USTSUseTranslationEquationNumbers
     \USTSAppendixChapter{外文翻译}%
     \translationtitle{#1}%
   \else
@@ -126,10 +165,28 @@
     \refstepcounter{USTStranslationchapter}%
     \setcounter{USTStranslationsection}{0}%
     \setcounter{USTStranslationsubsection}{0}%
-    \chapter*{第\,\theUSTStranslationchapter\,章\hspace{1em}#1}%
+    \setcounter{equation}{0}%
+    \ifUSTSAfterTranslationTitle
+      \USTSAppendixTranslationChapterHeadingNoClear{#1}%
+    \else
+      \chapter*{第\,\theUSTStranslationchapter\,章\hspace{1em}#1}%
+    \fi
+    \USTSAfterTranslationTitlefalse
     \thispagestyle{fancy}%
   \else
-    \chapter{#1}%
+    \ifUSTSAfterTranslationTitle
+      \refstepcounter{chapter}%
+      \setcounter{section}{0}%
+      \setcounter{subsection}{0}%
+      \setcounter{equation}{0}%
+      \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}%
+      \chaptermark{#1}%
+      \USTSTranslationChapterHeadingNoClear{#1}%
+      \thispagestyle{fancy}%
+      \USTSAfterTranslationTitlefalse
+    \else
+      \chapter{#1}%
+    \fi
   \fi
 }
 
@@ -166,6 +223,7 @@
 }
 
 \newcommand{\USTSOriginFirstPageCommand}{%
+  \USTSRestoreEquationNumbers
   \refstepcounter{chapter}%
   \addcontentsline{toc}{chapter}{\USTSOriginHeadingText}%
   \label{app:origin}%

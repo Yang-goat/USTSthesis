@@ -19,14 +19,25 @@
 \translationsubsection{选择译文类型}
 如果译文对象是论文、论文式文章，保留当前的论文式方案即可，此时会生成译文大标题、摘要页和关键词。若译文对象是书本、技术文档或一般资料，请在 \texttt{appendix/trans.tex} 中把 \texttt{\string\input\{appendix/trans-meta-article\}} 注释掉，并启用 \texttt{\string\input\{appendix/trans-meta-book\}}。
 
+\begin{equation}
+    a^2+b^c=c^2
+\end{equation}
+
 \translationsubsubsection{论文式方案示例}
+
 论文式方案的标题页写法见 \texttt{appendix/trans-meta-article.tex}。核心写法是：先用 \texttt{\string\appendixtranslationtitle\{...\}} 写译文标题，再用 \texttt{translationabstract} 环境填写摘要，并用 \texttt{\string\translationkeywords\{...\}} 填写关键词。
 
 \translationsubsubsection{无摘要页方案示例}
+
 无摘要页方案的标题页写法见 \texttt{appendix/trans-meta-book.tex}。这种情况下只保留 \texttt{\string\appendixtranslationtitle\{...\}}，不写 \texttt{translationabstract} 环境，标题后直接进入正文。
 
 \translationsection{正文编写方式}
+
 正文写在当前文件 \texttt{appendix/trans-body.tex} 中。你可以按译文原文结构，依次使用 \texttt{\string\translationsection}、\texttt{\string\translationsubsection}、\texttt{\string\translationsubsubsection} 来组织章节。
+
+\begin{equation}
+    a^2+b^c=c^2
+\end{equation}
 
 \translationsubsection{正文命令示例}
 可直接参考下面这组命令：
