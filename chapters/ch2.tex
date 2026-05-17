@@ -405,7 +405,22 @@ for epoch in range(max_epoch):
 \end{lstlisting}
 
 \subsection{文献引用}
-正文中可直接使用 \verb|\cite{key}|。例如，相关综述可参考\cite{alorf_survey_2023}。参考文献会按正文首次引用顺序输出，通常不需要手动调整 \verb|reference.bib| 中的条目先后。编译顺序建议为：
+正文中可直接使用 \verb|\cite{key}|。例如，相关综述可参考\cite{alorf_survey_2023}，网页或在线规范可参考\cite{w3c_url_2024}。参考文献会按正文首次引用顺序输出，通常不需要手动调整 \verb|reference.bib| 中的条目先后。
+
+本模板默认隐藏普通文献条目中的 URL，以避免期刊论文、图书等条目过长。若条目本身就是电子资源，应在 \verb|reference.bib| 中使用 \verb|@online|，填写 \verb|url| 与 \verb|urldate|，并在该条目内加入 \verb|options = {url=true}|。这样只会打开该电子资源条目的 URL 输出，符合 GB/T 7714-2015 对电子资源访问路径的著录要求。
+
+\begin{verbatim}
+@online{web_resource_key,
+  author  = {{机构名}},
+  title   = {网页标题},
+  year    = {2024},
+  url     = {https://example.com/page},
+  urldate = {2025-01-01},
+  options = {url=true}
+}
+\end{verbatim}
+
+编译顺序建议为：
 \begin{enumerate}
   \item \verb|xelatex main|
   \item \verb|biber main|

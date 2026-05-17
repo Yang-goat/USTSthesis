@@ -316,7 +316,22 @@ latexmk -xelatex main-thesis-with-appendix.tex
 
 自 2.1.1 版本起，模板默认按正文首次引用顺序输出参考文献，不再按作者和年份重新排序。因此通常只需要调整正文引用顺序，不需要手动改 `.bib` 文件中的条目先后。
 
-文献列表默认隐藏 URL，保留 DOI 和 eprint 信息。若学校或学院要求必须显示 URL，可在 [style/USTS-bib.sty](style/USTS-bib.sty) 中把 `url=false` 改为 `url=true`。
+文献列表默认隐藏普通条目的 URL，保留 DOI 和 eprint 信息。这样期刊论文、图书、会议论文等条目即使在 `.bib` 中保留了 `url` 字段，文后参考文献也不会被很长的网址撑开。
+
+如果某条文献本身就是电子资源，应在该条目内单独打开 URL 输出。推荐写成 `@online`，同时填写 `url`、`urldate`，并加入 `options = {url=true}`：
+
+```bibtex
+@online{web_resource_key,
+  author  = {{机构名}},
+  title   = {网页标题},
+  year    = {2024},
+  url     = {https://example.com/page},
+  urldate = {2025-01-01},
+  options = {url=true}
+}
+```
+
+这样只会显示这条电子资源的 URL；其他普通文献仍按模板默认设置隐藏 URL。`GB/T 7714-2015` 对电子资源要求著录获取和访问路径，因此电子资源不要只写 `url` 字段而忘记 `options = {url=true}`。
 
 ---
 
