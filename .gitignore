@@ -29,7 +29,8 @@
 !/img/**
 
 # Keep reference Word documents.
-!/*.doc
+!/模板格式来源/
+!/模板格式来源/**
 
 # Re-ignore LaTeX build artifacts anywhere in the tree.
 *.aux
