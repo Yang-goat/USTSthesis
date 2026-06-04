@@ -1,0 +1,106 @@
+% 附录入口：代码清单，由完整论文主入口作为附录 C 引入。
+\USTSRestoreEquationNumbers
+\USTSAppendixChapter{代码}
+
+\begin{lstlisting}[language=Matlab,caption={main.m/数据平滑与绘图代码},label={lst:appendix-matlab-main}]
+clear; clc;
+
+sampleCount = 180;
+t = linspace(0, 12, sampleCount);
+rng(2026);
+
+signal = sin(t) + 0.35 * cos(2.4 * t);
+noise = 0.18 * randn(size(t));
+measurement = signal + noise;
+
+windowSize = 9;
+filtered = movmean(measurement, windowSize);
+residual = measurement - filtered;
+rmse = sqrt(mean((filtered - signal) .^ 2));
+
+fprintf("RMSE = %.4f\n", rmse);
+
+figure("Color", "w");
+subplot(2, 1, 1);
+plot(t, measurement, ".", "DisplayName", "measurement");
+hold on;
+plot(t, filtered, "LineWidth", 1.6, "DisplayName", "filtered");
+plot(t, signal, "--", "LineWidth", 1.2, "DisplayName", "reference");
+grid on;
+xlabel("time/s");
+ylabel("amplitude");
+legend("Location", "best");
+
+subplot(2, 1, 2);
+plot(t, residual, "LineWidth", 1.2);
+grid on;
+xlabel("time/s");
+ylabel("residual");
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python,caption={preprocess.py/数据归一化代码},label={lst:appendix-normalize}]
+from dataclasses import dataclass
+
+
+@dataclass
+class NormalizationStats:
+    mean: float
+    std: float
+
+
+def normalize(values):
+    if not values:
+        raise ValueError("values must not be empty")
+    mean = sum(values) / len(values)
+    variance = sum((item - mean) ** 2 for item in values) / len(values)
+    std = variance ** 0.5 or 1.0
+    return [(item - mean) / std for item in values], NormalizationStats(mean, std)
+
+
+scores, stats = normalize([71.5, 83.0, 79.5, 92.0])
+print(scores)
+print(stats)
+\end{lstlisting}
+
+\begin{lstlisting}[language=C++,caption={search.cpp/网格搜索代码},label={lst:appendix-grid}]
+#include <iostream>
+#include <limits>
+#include <vector>
+
+double objective(double x, double y) {
+    return (x - 3.0) * (x - 3.0) + (y + 2.0) * (y + 2.0);
+}
+
+int main() {
+    double best_value = std::numeric_limits<double>::infinity();
+    double best_x = 0.0;
+    double best_y = 0.0;
+
+    for (double x = -5.0; x <= 5.0; x += 0.5) {
+        for (double y = -5.0; y <= 5.0; y += 0.5) {
+            double value = objective(x, y);
+            if (value < best_value) {
+                best_value = value;
+                best_x = x;
+                best_y = y;
+            }
+        }
+    }
+
+    std::cout << "best: " << best_x << ", " << best_y << std::endl;
+    return 0;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL,caption={report.sql/实验结果汇总代码},label={lst:appendix-sql}]
+SELECT
+    model_name,
+    COUNT(*) AS run_count,
+    ROUND(AVG(accuracy), 4) AS avg_accuracy,
+    ROUND(AVG(f1_score), 4) AS avg_f1
+FROM experiment_runs
+WHERE finished_at >= DATE '2026-01-01'
+GROUP BY model_name
+HAVING COUNT(*) >= 3
+ORDER BY avg_f1 DESC, avg_accuracy DESC;
+\end{lstlisting}

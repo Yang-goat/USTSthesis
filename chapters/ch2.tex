@@ -7,8 +7,12 @@
 
 推荐按以下顺序组织内容：
 \begin{enumerate}
+  \item 在 Word 封面中填写信息，导出到 \verb|front/| 目录下的同名 PDF；封面开关方式是在 \verb|front/cover.tex| 中注释或取消注释 \verb|\includepdf| 行。
+  \item 在两个论文主入口中选择页眉类型：\verb|\USTSHeaderTypeThesis| 对应毕业论文，\verb|\USTSHeaderTypeDesign| 对应毕业设计。
   \item 在 \verb|main-thesis.tex| 或 \verb|main-thesis-with-appendix.tex| 中维护论文整体顺序（摘要、目录、正文、结论、参考文献、附录）。
   \item 在 \verb|chapters/| 下按章节拆分正文（如 \verb|introduction.tex|、\verb|ch2.tex|）。
+  \item 在 \verb|appendix/code.tex| 中维护带附录版本的附录 C 代码清单。
+  \item 在 \verb|模板格式来源/| 中查看学校 Word 样式文件和国标 PDF，用于人工核对格式，不要把这些来源文件作为正文内容直接引入。
   \item 将论文图片统一放入 \verb|img/|，正文中使用 \verb|img/文件名.png| 引用。
   \item 在 \verb|reference.bib| 中维护参考文献条目，在正文通过 \verb|\cite{key}| 引用。
 \end{enumerate}
@@ -404,19 +408,28 @@ for epoch in range(max_epoch):
         save_checkpoint(model)
 \end{lstlisting}
 
-\subsection{文献引用}
-正文中可直接使用 \verb|\cite{key}|。例如，相关综述可参考\cite{alorf_survey_2023}，网页或在线规范可参考\cite{w3c_url_2024}。参考文献会按正文首次引用顺序输出，通常不需要手动调整 \verb|reference.bib| 中的条目先后。
+代码清单标题默认显示为“代码 1”“代码 2”这类格式。
+旧的英文编号样式不会再用于代码标题。
+带附录版本的完整代码示例集中放在 \verb|appendix/code.tex|，其中包含 MATLAB、Python、C++ 和 SQL 示例。
 
-本模板默认隐藏普通文献条目中的 URL，以避免期刊论文、图书等条目过长。若条目本身就是电子资源，应在 \verb|reference.bib| 中使用 \verb|@online|，填写 \verb|url| 与 \verb|urldate|，并在该条目内加入 \verb|options = {url=true}|。这样只会打开该电子资源条目的 URL 输出，符合 GB/T 7714-2015 对电子资源访问路径的著录要求。
+\subsection{文献引用}
+正文中可直接使用 \verb|\cite{key}|。
+中文期刊论文、图书、会议论文、学位论文可参考\cite{cn_journal_2024,cn_book_2021,cn_conference_2023,cn_thesis_2022}。
+标准、专利、研究报告和在线资源可参考\cite{cn_standard_2020,cn_patent_2021,cn_report_2022,cn_online_2024}。
+英文期刊论文示例可参考\cite{alorf_survey_2023}。
+参考文献会按正文首次引用顺序输出，通常不需要手动调整 \verb|reference.bib| 中的条目先后。
+
+本模板保留 \verb|style=gb7714-2015| 和顺序编码输出，并在样式中关闭 URL 与 DOI 输出。即使 \verb|reference.bib| 条目中保留 \verb|url| 或 \verb|doi| 字段，参考文献表也默认不显示 URL 和 DOI。
 
 \begin{verbatim}
-@online{web_resource_key,
-  author  = {{机构名}},
-  title   = {网页标题},
+@article{cn_journal_2024,
+  author  = {张伟 and 李明 and 王芳},
+  title   = {面向复杂系统的智能优化方法研究},
+  journal = {计算机工程与应用},
   year    = {2024},
-  url     = {https://example.com/page},
-  urldate = {2025-01-01},
-  options = {url=true}
+  volume  = {60},
+  number  = {8},
+  pages   = {15--23}
 }
 \end{verbatim}
 

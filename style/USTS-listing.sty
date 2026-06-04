@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{USTS-listing}[2026/05/10 Lists, algorithm, code]
+\ProvidesPackage{USTS-listing}[2026/06/04 Lists, algorithm, code]
 
 % ----------------------------------------------------------
 % 列表、算法、代码环境设置。
@@ -54,6 +54,17 @@
 
 \RequirePackage{listings,xcolor}
 \definecolor{lstframe}{RGB}{180,180,180}
+\renewcommand{\lstlistingname}{代码}
+\renewcommand{\lstlistlistingname}{代码清单}
+\captionsetup[lstlisting]{labelsep=quad}
+\AtBeginDocument{%
+  \providecommand{\thelstlisting}{\arabic{lstlisting}}%
+  \renewcommand{\thelstlisting}{\arabic{lstlisting}}%
+  \@ifpackageloaded{cleveref}{%
+    \crefname{lstlisting}{代码}{代码}%
+    \Crefname{lstlisting}{代码}{代码}%
+  }{}%
+}
 \lstset{
   basicstyle=\ttfamily\zihao{-5}\linespread{1}\selectfont,
   keywordstyle=\color{blue},

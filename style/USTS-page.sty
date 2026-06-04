@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{USTS-page}[2026/05/10 Page styles]
+\ProvidesPackage{USTS-page}[2026/06/04 Page styles]
 
 % ----------------------------------------------------------
 % 页眉页脚辅助命令。
@@ -14,8 +14,23 @@
 % ----------------------------------------------------------
 
 \RequirePackage{fancyhdr}
+\RequirePackage{etoolbox}
 
 \newcommand{\USTSHeaderText}{苏州科技大学本科生毕业论文}
+\newcommand{\USTSHeaderTypeThesis}{%
+  \renewcommand{\USTSHeaderText}{苏州科技大学本科生毕业论文}%
+}
+\newcommand{\USTSHeaderTypeDesign}{%
+  \renewcommand{\USTSHeaderText}{苏州科技大学本科生毕业设计}%
+}
+\newcommand{\USTSSetHeaderType}[1]{%
+  \ifstrequal{#1}{design}{\USTSHeaderTypeDesign}{%
+  \ifstrequal{#1}{thesis}{\USTSHeaderTypeThesis}{%
+  \ifstrequal{#1}{毕业设计}{\USTSHeaderTypeDesign}{%
+  \ifstrequal{#1}{毕业论文}{\USTSHeaderTypeThesis}{%
+    \USTSHeaderTypeThesis%
+  }}}}%
+}
 
 \newcommand{\USTSSetupPageThesis}{%
   \fancyhf{}%

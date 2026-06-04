@@ -2,10 +2,14 @@
 \documentclass[thesisappendix]{USTSthesis}
 \addbibresource{reference.bib}
 
+% 页眉类型二选一：毕业论文 / 毕业设计。
+\USTSHeaderTypeThesis
+% \USTSHeaderTypeDesign
+
 \begin{document}
 
-% 封面插入
-% \includepdf{cover.pdf}
+% 封面：开关方式见 front/cover.tex，注释其中 \includepdf 行即可关闭。
+\input{front/cover}
 
 \frontmatter
 
@@ -38,5 +42,6 @@
 \USTSStartAppendixMatter
 \include{appendix/trans}
 \include{appendix/origin}
+\include{appendix/code}
 
 \end{document}

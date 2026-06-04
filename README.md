@@ -2,11 +2,11 @@
 
 苏州科技大学本科毕业设计（论文）LaTeX 模板
 
-![Version](https://img.shields.io/badge/version-2.1.3-blue.svg)
+![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)
 ![License: LPPL 1.3c](https://img.shields.io/badge/license-LPPL%201.3c-green.svg)
 ![Build: XeLaTeX + Biber](https://img.shields.io/badge/build-XeLaTeX%20%2B%20Biber-orange.svg)
 
-本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.1.3` 版本在三文档架构基础上修复了无摘要页外文翻译的首页排版和附录译文公式编号问题，可同时支持：
+本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.2.0` 版本在三文档架构基础上改用 Word 封面转 PDF 插入，补充毕业论文/毕业设计页眉选择、附录 C 代码清单、参考文献多类型示例与本地格式来源文件，可同时支持：
 
 - 毕业论文正文
 - 单独的外文翻译译文
@@ -16,21 +16,28 @@
 
 ## 版本信息
 
-- 当前版本：`2.1.3`
-- 更新日期：`2026-05-15`
+- 当前版本：`2.2.0`
+- 更新日期：`2026-06-04`
 - 编译方式：`XeLaTeX + Biber`
 - 格式参考：[苏州科技大学 毕业设计（论文）样式](https://bylw.usts.edu.cn/bysj/NewsDetail.aspx?ConfigurationID=8F0lgC4y7Ho%3d&HomePageManagementID=X0H9ludZcp8%3d)
+- 本地格式来源：`模板格式来源/` 中保留学校 Word 样式文件、`GB/T 7713.1-2025` 和 `GB/T 7714-2015` 参考文件，便于离线核对。
 
 ---
 
-## 2.1.3 更新内容
+## 2.2.0 更新内容
 
-- 无摘要页译文排版修复：
-  - 修复仅翻译模式下无摘要页译文标题后多出空页的问题，译文标题后可直接进入第 1 章。
-  - 修复作为论文附录时无摘要页译文标题后多出空页的问题，附录标题、译文标题和第 1 章可连续排版。
-- 附录译文公式编号修复：
-  - 附录模式下译文章节继续使用独立的“第 1 章 / 1.1 / 1.1.1”体系。
-  - 附录译文中的公式编号同步改为按译文章节编号，例如 `(1.1)`，不再沿用附录章号生成 `(A.1)`。
+- 封面流程调整：
+  - 不再由 LaTeX 复刻封面版式，改为先填写 Word 封面，再导出 PDF 并通过 `\includepdf` 插入。
+  - `front/cover.tex` 仅保留封面 PDF 插入入口，注释该行即可关闭封面。
+- 页眉类型选择：
+  - 在论文主入口提供 `\USTSHeaderTypeThesis` 与 `\USTSHeaderTypeDesign`，分别对应“苏州科技大学本科生毕业论文”和“苏州科技大学本科生毕业设计”页眉。
+- 附录 C 代码清单：
+  - 带附录版本新增 `appendix/code.tex`，作为“附录 C 代码”接入。
+  - `listings` 标题改为“代码 1”“代码 2”这类格式，并提供 MATLAB、Python、C++、SQL 示例。
+- 参考文献与格式来源：
+  - 继续保留 `style=gb7714-2015` 和顺序编码输出，默认隐藏 URL 与 DOI。
+  - `reference.bib` 补充中文期刊、图书、会议论文、学位论文、标准、专利、报告、在线资源和英文期刊论文示例。
+  - `模板格式来源/` 补充学校 Word 样式文件以及 GB/T 7713.1-2025、GB/T 7714-2015 参考文件，便于人工核对格式。
 
 ---
 
@@ -46,11 +53,12 @@
 
 - [USTSthesis.cls](USTSthesis.cls)：模板类文件，控制整体版式、页眉页脚、章节样式等。一般不需要改。
 - [style/](style/)：样式模块，拆分存放模板内部样式。一般不需要改。
-- [front/](front/)：论文前置内容，目前包含中文摘要和英文摘要。
+- [front/](front/)：论文前置内容，目前包含封面入口、Word 封面模板、中文摘要和英文摘要。
 - [chapters/](chapters/)：论文正文内容，每个 `.tex` 文件对应一个章节或后置章节。写正文时主要改这里。
 - [appendix/](appendix/)：外文翻译和外文原文附录。译文有一点特殊：同一份译文内容既可以单独编译成“外文翻译”文档，也可以被完整论文作为附录引用。
 - [img/](img/)：论文图片推荐存放目录。
 - [reference.bib](reference.bib)：参考文献数据库，正文中通过 `\cite{key}` 引用。
+- [模板格式来源/](模板格式来源/)：学校 Word 样式文件和国标参考文件，仅用于人工核对格式，不参与 LaTeX 编译。
 
 三个主入口文件如下：
 
@@ -110,12 +118,14 @@ latexmk -xelatex main-translation.tex
 
 - 附录 A：外文翻译
 - 附录 B：外文原文 PDF
+- 附录 C：代码
 
 其中：
 
 - 译文附录沿用论文页眉与连续页码
 - 原文 PDF 也参与论文页码
 - 原文附录不再生成多余的空白标题页
+- 代码附录使用 `listings` 代码块排版
 
 编译命令：
 
@@ -138,11 +148,51 @@ latexmk -xelatex main-thesis-with-appendix.tex
 
 1. 在 [front/abstract_zh.tex](front/abstract_zh.tex) 填写中文摘要和关键词。
 2. 在 [front/abstract_en.tex](front/abstract_en.tex) 填写英文摘要和关键词。
-3. 在 [chapters/](chapters/) 下按章节写正文。可以先替换已有示例内容，再按需要新增章节文件。
-4. 如果新增章节文件，需要在 `main-thesis.tex` 和 `main-thesis-with-appendix.tex` 中增加对应的 `\include{chapters/文件名}`。
-5. 将论文图片放到 [img/](img/) 中，在正文里用 `img/文件名.png` 这类路径引用。
-6. 在 [reference.bib](reference.bib) 中维护参考文献，在正文中使用 `\cite{key}` 引用。
-7. 编译 [main-thesis.tex](main-thesis.tex) 查看正文版本。
+3. 在 [front/苏州科技大学本科生毕业设计（论文）封面.docx](front/苏州科技大学本科生毕业设计（论文）封面.docx) 中填写封面信息，再导出为同目录、同主文件名的 PDF。
+4. 在 `main-thesis.tex` 和 `main-thesis-with-appendix.tex` 中选择页眉类型：保留 `\USTSHeaderTypeThesis` 表示毕业论文，保留 `\USTSHeaderTypeDesign` 表示毕业设计。
+5. 在 [chapters/](chapters/) 下按章节写正文。可以先替换已有示例内容，再按需要新增章节文件。
+6. 如果新增章节文件，需要在 `main-thesis.tex` 和 `main-thesis-with-appendix.tex` 中增加对应的 `\include{chapters/文件名}`。
+7. 将论文图片放到 [img/](img/) 中，在正文里用 `img/文件名.png` 这类路径引用。
+8. 在 [reference.bib](reference.bib) 中维护参考文献，在正文中使用 `\cite{key}` 引用。
+9. 编译 [main-thesis.tex](main-thesis.tex) 查看正文版本。
+
+### 封面怎么写
+
+封面不再由 LaTeX 生成。请先打开 [front/苏州科技大学本科生毕业设计（论文）封面.docx](front/苏州科技大学本科生毕业设计（论文）封面.docx)，按学校 Word 封面填写学号、题目、院系、专业、年级、姓名、指导教师等信息，然后另存或导出为：
+
+```text
+front/苏州科技大学本科生毕业设计（论文）封面.pdf
+```
+
+[front/cover.tex](front/cover.tex) 只负责把这个 PDF 插入论文：
+
+```tex
+\includepdf{front/苏州科技大学本科生毕业设计（论文）封面.pdf}
+```
+
+如果不想在当前编译结果中插入封面，直接把这一行注释掉：
+
+```tex
+% \includepdf{front/苏州科技大学本科生毕业设计（论文）封面.pdf}
+```
+
+封面开关方式就是注释或取消注释这一行代码；不要再在 LaTeX 中填写封面字段。
+
+### 页眉怎么选
+
+正文和带附录版本默认页眉为“苏州科技大学本科生毕业论文”。如果你的文档是毕业论文，在主入口中保留：
+
+```tex
+\USTSHeaderTypeThesis
+```
+
+如果你的文档是毕业设计，改为保留：
+
+```tex
+\USTSHeaderTypeDesign
+```
+
+两个命令二选一即可。`main-thesis.tex` 和 `main-thesis-with-appendix.tex` 中都提供了这个选择入口。
 
 ### 写单独外文翻译
 
@@ -156,8 +206,9 @@ latexmk -xelatex main-thesis-with-appendix.tex
 1. 先完成正文、摘要、参考文献等论文主体内容。
 2. 完成 [appendix/trans.tex](appendix/trans.tex) 这一套外文翻译内容。
 3. 在 [appendix/origin.tex](appendix/origin.tex) 中设置外文原文 PDF 的标题和路径。
-4. 编译 [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex) 查看带附录的完整论文。
-5. 如果你同时维护正文版、译文版和完整版，最终提交前建议三个主入口都编译一次，避免某一个文档没有同步到最新内容。
+4. 在 [appendix/code.tex](appendix/code.tex) 中维护附录 C 的代码清单。
+5. 编译 [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex) 查看带附录的完整论文。
+6. 如果你同时维护正文版、译文版和完整版，最终提交前建议三个主入口都编译一次，避免某一个文档没有同步到最新内容。
 
 ---
 
@@ -267,6 +318,40 @@ latexmk -xelatex main-thesis-with-appendix.tex
 
 ---
 
+## 附录 C 代码怎么写
+
+代码附录入口是 [appendix/code.tex](appendix/code.tex)，并由 [main-thesis-with-appendix.tex](main-thesis-with-appendix.tex) 中的下面一行引入：
+
+```tex
+\include{appendix/code}
+```
+
+该文件默认使用与其他附录一致的标题样式：
+
+```tex
+\USTSAppendixChapter{代码}
+```
+
+代码内容使用 `lstlisting` 环境。示例：
+
+```tex
+\begin{lstlisting}[language=Matlab,caption={main.m/数据平滑与绘图代码},label={lst:appendix-matlab-main}]
+clear; clc;
+t = linspace(0, 12, 180);
+measurement = sin(t) + 0.18 * randn(size(t));
+filtered = movmean(measurement, 9);
+plot(t, measurement, ".");
+hold on;
+plot(t, filtered, "LineWidth", 1.6);
+\end{lstlisting}
+```
+
+代码清单标题会显示为“代码 1”“代码 2”这类格式，不再使用 `Listing C.1`。
+
+如果不需要代码附录，注释 `main-thesis-with-appendix.tex` 中的 `\include{appendix/code}` 即可。
+
+---
+
 ## 图片怎么放
 
 建议把论文图片统一放入 [img/](img/)。
@@ -316,22 +401,21 @@ latexmk -xelatex main-thesis-with-appendix.tex
 
 自 2.1.1 版本起，模板默认按正文首次引用顺序输出参考文献，不再按作者和年份重新排序。因此通常只需要调整正文引用顺序，不需要手动改 `.bib` 文件中的条目先后。
 
-文献列表默认隐藏普通条目的 URL，保留 DOI 和 eprint 信息。这样期刊论文、图书、会议论文等条目即使在 `.bib` 中保留了 `url` 字段，文后参考文献也不会被很长的网址撑开。
+文献列表默认隐藏 URL 和 DOI。这样期刊论文、图书、会议论文、在线资源等条目即使在 `.bib` 中保留了 `url` 或 `doi` 字段，文后参考文献也不会输出这些字段。
 
-如果某条文献本身就是电子资源，应在该条目内单独打开 URL 输出。推荐写成 `@online`，同时填写 `url`、`urldate`，并加入 `options = {url=true}`：
+当前模板保留 `style=gb7714-2015`，并使用 `sorting=none` 按正文首次引用顺序生成顺序编码制参考文献。`reference.bib` 中提供了中文期刊、图书、会议论文、学位论文、标准、专利、报告、在线资源和英文期刊论文示例。典型中文期刊条目如下：
 
 ```bibtex
-@online{web_resource_key,
-  author  = {{机构名}},
-  title   = {网页标题},
+@article{cn_journal_2024,
+  author  = {张伟 and 李明 and 王芳},
+  title   = {面向复杂系统的智能优化方法研究},
+  journal = {计算机工程与应用},
   year    = {2024},
-  url     = {https://example.com/page},
-  urldate = {2025-01-01},
-  options = {url=true}
+  volume  = {60},
+  number  = {8},
+  pages   = {15--23}
 }
 ```
-
-这样只会显示这条电子资源的 URL；其他普通文献仍按模板默认设置隐藏 URL。`GB/T 7714-2015` 对电子资源要求著录获取和访问路径，因此电子资源不要只写 `url` 字段而忘记 `options = {url=true}`。
 
 ---
 
@@ -397,6 +481,7 @@ xelatex main-thesis-with-appendix.tex
 | **2.1.1** | 2026-05-10 | 合并 2.1.x 更新：字体粗细优化，黑体加粗接近 Word 效果，中文 `\textbf` 正常加粗；参考文献按正文引用顺序输出，隐藏 URL 并保留 DOI/eprint；新增 `img/` 图片目录约定、`.gitignore`，移除自动 release workflow，并完善 README 与正文示例说明。 |
 | **2.1.2** | 2026-05-11 | 文档整理更新：优化新手入门教程和多文件架构说明，提前并细化推荐使用流程，补充 VS Code 插件编译提醒，并为每个 `.tex` 文件增加用途注释。 |
 | **2.1.3** | 2026-05-15 | 外文翻译格式修复：无摘要页译文标题后直接进入第 1 章，不再多出空页；附录译文公式按译文章节编号为 `(1.1)` 等，不再显示为 `(A.1)`。 |
+| **2.2.0** | 2026-06-04 | 封面改为 Word 填写后导出 PDF 插入；新增毕业论文/毕业设计页眉选择入口；带附录版本新增附录 C 代码并将 `listings` 标题改为“代码 1”等格式；参考文献继续使用 `gb7714-2015` 顺序编码并隐藏 URL/DOI，补充多类型中英文示例；新增本地格式来源文件并同步 README 与正文教程。 |
 
 ---
 
