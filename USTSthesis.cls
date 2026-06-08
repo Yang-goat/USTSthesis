@@ -12,7 +12,7 @@
 % ----------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{USTSthesis}[2026/06/04 USTS thesis template v2.2.0]
+\ProvidesClass{USTSthesis}[2026/06/08 USTS thesis template v2.2.1]
 
 % ------------------ 模式开关 ------------------
 \newif\ifUSTSthesis
