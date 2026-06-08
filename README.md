@@ -1,12 +1,12 @@
 # USTSthesis
 
-苏州科技大学本科毕业设计（论文）LaTeX 模板
+苏州科技大学数学科学学院本科毕业设计（论文）LaTeX 模板
 
 ![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)
 ![License: LPPL 1.3c](https://img.shields.io/badge/license-LPPL%201.3c-green.svg)
 ![Build: XeLaTeX + Biber](https://img.shields.io/badge/build-XeLaTeX%20%2B%20Biber-orange.svg)
 
-本模板面向苏州科技大学本科毕业设计（论文）写作，当前 `2.2.0` 版本在三文档架构基础上改用 Word 封面转 PDF 插入，补充毕业论文/毕业设计页眉选择、附录 C 代码清单、参考文献多类型示例与本地格式来源文件，可同时支持：
+本模板面向苏州科技大学数学科学学院本科毕业设计（论文）写作，当前 `2.2.0` 版本在三文档架构基础上改用 Word 封面转 PDF 插入，补充毕业论文/毕业设计页眉选择、附录 C 代码清单、参考文献多类型示例与本地格式来源文件，可同时支持：
 
 - 毕业论文正文
 - 单独的外文翻译译文
